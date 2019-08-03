@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    
+    <style >
+        body {
+            
+            background-size:contain;
+            background:fixed url('hw3_musicplayer/Sciencefiction.png') center center no-repeat;
+            margin:0;
+            padding:0;
+            
+            }
+       
+        /*#background {
+           
+            
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height:100%;
+            
+            
+        }*/
+         
+        #player {
+            width: 600px;
+            height: 600px;
+            position: fixed;
+            left: 32%;
+            top: 200px;
+            border-radius: 25px;
+            background-color: rgba(0, 0, 0,0.5);
+            border: 8PX solid rgba(255, 255, 255,0.8);
+            box-shadow: 0 0 40px white;
+        }
+
+        .buttonBG {
+            width: 50px;
+            height: 50px;
+            position: relative;
+            background-color: rgba(255, 255, 255,0.7);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 13px rgba(255, 255, 255,0.8);
+        }
+
+            .buttonBG:hover {
+                box-shadow: 0 0 17px rgb(255, 255, 255);
+            }
+
+        #info_area {
+            width: 500px;
+            height: 200px;
+            background-color: rgba(255, 255, 255,0.5);
+            position: fixed;
+            left: 35.5%;
+            top: 260px;
+            border-radius: 10px;
+        }
+        
+        marquee {
+            font-family: 微軟正黑體;
+            font-size: 14pt;
+            font-weight: 500;
+            color: black;
+            -webkit-text-stroke: 0.7px white;
+            position: relative;
+            left: 10px;
+         
+        #marquee_now_song{
+            width: 420px;
+            height: 20px;
+            position: relative;
+            left: 10px;
+            top: 3px;
+        }
+
+        
+        
+    </style>
+
+
+</head>
+<body>
+    <div id="background">
+
+        <div id="player">
+            <!--<button id="play" style="font-family:Webdings">4</button>  可使用webdings內建的特殊符號-->
+            <div id="info_area">
+                <marquee id="marquee_now_song" scrollamount="2" direction="up">目前播放歌曲：小幸運</marquee>
+            </div>
+
+            <div >
+                <img class="buttonBG" title="Previous" style="left:38%;top: 480px;" src="music-player_icon/118357-music-player-options/png/previous.png" />
+                <img class="buttonBG" title="Rewind" style="left:41%;top: 480px;" src="music-player_icon/118357-music-player-options/png/rewind.png" />
+                <img class="buttonBG" title="Play" style="left:44%;top: 480px;" src="music-player_icon/118357-music-player-options/png/play-button.png" />
+                <img class="buttonBG" title="Pause" style="left:47%;top: 480px;" src="music-player_icon/118357-music-player-options/png/pause.png" />
+                <img class="buttonBG" title="Stop" style="left:50%;top: 480px;" src="music-player_icon/118357-music-player-options/png/stop.png" />
+                <img class="buttonBG" title="Fast-Forward" style="left:53%;top: 480px;" src="music-player_icon/118357-music-player-options/png/fast-forward.png" />
+                <img class="buttonBG" title="Next" style="left:56%;top: 480px;" src="music-player_icon/118357-music-player-options/png/next.png" />
+            </div>
+
+        </div>
+        
+    </div>
+    
+</body>
+</html>
