@@ -26,7 +26,7 @@
             border: 8PX solid rgba(255, 255, 255,0.8);
             box-shadow: 0 0 40px white;
         }
-
+        
         .buttonBG {
             width: 50px;
             height: 50px;
@@ -34,13 +34,28 @@
             background-color: rgba(255, 255, 255,0.7);
             border-radius: 50%;
             cursor: pointer;
+            top: 0px;
             box-shadow: 0 0 13px rgba(255, 255, 255,0.8);
+            
         }
-
-            .buttonBG:hover {
-                box-shadow: 0 0 17px rgb(255, 255, 255);
-            }
-
+        .buttonBG2 {
+            width:48px;
+            height:48px;
+            border:1.2px solid;
+            border-radius:50%;
+            position:relative;
+            box-shadow: 0 0 13px rgba(255, 255, 255,0.8);
+            background-color: rgba(255, 255, 255,0.6);
+            cursor: pointer;
+            color:#262525;
+        }
+        .buttonBG:hover {
+            box-shadow: 0 0 17px rgb(255, 255, 255);
+        }
+        .buttonBG2:hover {
+            box-shadow:0 0 17px white;
+        }
+        
         #info_area {
             width: 500px;
             height: 200px;
@@ -67,7 +82,7 @@
             left: 10px;
             top: 3px;
         }
-
+        
         
         
     </style>
@@ -75,27 +90,79 @@
 
 </head>
 <body>
-    <div >
+    <div>
+
+        <audio id="audio" controls="controls">
+            <source src="MUSIC/Zedd,%20Katy%20Perry%20-%20365.mp3" type="audio/mp3" />
+            <source src="MUSIC/Anne-Marie - Then.mp3" type="audio/mp3" />
+            <source src="MUSIC/Alan Walker, Sabrina Carpenter & Farruko - On My Way.mp3" type="audio/mp3" />
+            <source src="MUSIC/蔡依林-玫瑰少年.mp3" type="audio/mp3" />
+            
+        </audio>
 
         <div id="player">
-            <!--<button id="play" style="font-family:Webdings">4</button>  可使用webdings內建的特殊符號-->
             <div id="info_area">
                 <marquee id="marquee_now_song" scrollamount="2" direction="up">目前播放歌曲：小幸運</marquee>
             </div>
 
-            <div >
-                <img class="buttonBG" title="Previous" style="left:38%;top: 480px;" src="music-player_icon/118357-music-player-options/png/previous.png" />
-                <img class="buttonBG" title="Rewind" style="left:41%;top: 480px;" src="music-player_icon/118357-music-player-options/png/rewind.png" />
-                <img class="buttonBG" title="Play" style="left:44%;top: 480px;" src="music-player_icon/118357-music-player-options/png/play-button.png" />
-                <img class="buttonBG" title="Pause" style="left:47%;top: 480px;" src="music-player_icon/118357-music-player-options/png/pause.png" />
-                <img class="buttonBG" title="Stop" style="left:50%;top: 480px;" src="music-player_icon/118357-music-player-options/png/stop.png" />
-                <img class="buttonBG" title="Fast-Forward" style="left:53%;top: 480px;" src="music-player_icon/118357-music-player-options/png/fast-forward.png" />
-                <img class="buttonBG" title="Next" style="left:56%;top: 480px;" src="music-player_icon/118357-music-player-options/png/next.png" />
-            </div>
+
+            <table style="width:500px;height:145px;border:1px dashed white;position:relative;top:265px;left:10%">
+                <tr>
+                    <td style="height:80px;">
+                        <img class="buttonBG" id="Previous" title="Previous" style="left:3%" src="music-player_icon/118357-music-player-options/png/previous.png" />
+                        <img class="buttonBG" id="Rewind" title="Rewind" style="left:6%" src="music-player_icon/118357-music-player-options/png/rewind.png" />
+                        <img class="buttonBG" id="Pause" title="Pause" style="left:9%;visibility:hidden" src="music-player_icon/118357-music-player-options/png/pause.png" />
+                        <img class="buttonBG" id="Play" title="Play" style="left:-9px" src="music-player_icon/118357-music-player-options/png/play-button.png" />
+                        <img class="buttonBG" id="Stop" title="Stop" style="left:0%" src="music-player_icon/118357-music-player-options/png/stop.png" />
+                        <img class="buttonBG" id="Fast-Forward" title="Fast-Forward" style="left:3%" src="music-player_icon/118357-music-player-options/png/fast-forward.png" />
+                        <img class="buttonBG" id="Next" title="Next" style="left:6%" src="music-player_icon/118357-music-player-options/png/next.png" />
+                        <img class="buttonBG" id="Shuffle" title="shuffle" style="left:9%" src="music-player_icon/118357-music-player-options/png/shuffle.png" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img class="buttonBG" id="Volume" title="Volume" style="left:3%" src="music-player_icon/118357-music-player-options/png/volume.png" />
+                        <img class="buttonBG" id="Mute" title="Mute" style="left:6%" src="music-player_icon/118357-music-player-options/png/mute.png" />
+                        <img class="buttonBG" id="Repeat_all" title="Repeat_ALL" style="left:9%" src="music-player_icon/118357-music-player-options/png/repeat.png" />
+                        <img class="buttonBG2" ID="repeat_one" title="Repeat_ONE" style="left:12%;" src="music-player_icon/baseline_repeat_one_black_48dp.png" />
+                    </td>
+                </tr>
+            </table>
 
         </div>
-        
+
     </div>
-    
+    <script>
+        function PlayMusic() {
+            audio.play();
+        }
+        function PauseMusic() {
+            audio.pause();
+        }
+        function showplay() {
+            play.style.visibility = "visible";
+            pause.style.visibility = "hidden";
+        }
+        function showpause() {
+            pause.style.visibility = "visible";
+            play.style.visibility = "hidden";
+        }
+        function muteMusic() {
+            
+        }
+        var audio = document.getElementById("audio");
+        var play = document.getElementById("Play");
+        var pause = document.getElementById("Pause");
+       
+        play.addEventListener("click", PlayMusic);
+        play.addEventListener("click", showpause);
+
+        pause.addEventListener("click", PauseMusic);
+        pause.addEventListener("click", showplay);
+
+        
+        
+
+    </script>
 </body>
 </html>
