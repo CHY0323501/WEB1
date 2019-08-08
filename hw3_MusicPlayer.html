@@ -3,163 +3,438 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
-    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style >
         body {
-            
             background-size:contain;
             background:fixed url('hw3_musicplayer/Sciencefiction.png') center center no-repeat;
             margin:0;
             padding:0;
-            
-            }
-             
-         
+        }
         #player {
             width: 600px;
-            height: 600px;
-            position: fixed;
-            left: 32%;
-            top: 200px;
+            height: 310px;
+            position: absolute;
+            left: 50%;                              
+            top: 50%;
             border-radius: 25px;
             background-color: rgba(0, 0, 0,0.5);
             border: 8PX solid rgba(255, 255, 255,0.8);
             box-shadow: 0 0 40px white;
+            transform:translate(-50%,-50%);
+            animation-duration: 1s;
+            animation-name:changeColor;
+            animation-iteration-count: infinite;
+            animation-direction:alternate;
         }
-        
-        .buttonBG {
+        @keyframes changeColor {
+            0% {box-shadow: 0 0 40px  rgb(246, 245, 185);}
+            100% {box-shadow: 0 0 80px  white;}
+        }
+        #info_area+div {
+            width:500px;
+            height:145px;
+            position:absolute;
+            top:35%;
+            left:8.5%;
+        }
+        .buttonBG{
             width: 50px;
             height: 50px;
-            position: relative;
+            position: absolute;
             background-color: rgba(255, 255, 255,0.7);
+            border:1px solid #808080;
             border-radius: 50%;
             cursor: pointer;
-            top: 0px;
             box-shadow: 0 0 13px rgba(255, 255, 255,0.8);
-            
+            top:25%;
+            color:black;
+            font-size:3rem;
+            text-align:center;
         }
-        .buttonBG2 {
-            width:48px;
-            height:48px;
-            border:1.2px solid;
-            border-radius:50%;
-            position:relative;
-            box-shadow: 0 0 13px rgba(255, 255, 255,0.8);
-            background-color: rgba(255, 255, 255,0.6);
-            cursor: pointer;
-            color:#262525;
+        #controlpanel_two>span{
+            top:80%;
         }
         .buttonBG:hover {
             box-shadow: 0 0 17px rgb(255, 255, 255);
         }
-        .buttonBG2:hover {
-            box-shadow:0 0 17px white;
+        .info_area_play {
+            animation-duration: 1.5s;
+            animation-name:areaplay;
+            animation-iteration-count:infinite;
+            animation-direction:alternate;
         }
-        
+        @keyframes areaplay {
+            0% {box-shadow:0px 0px 5px 5px rgba(249, 255, 102, 0.68) ;}
+            25% {box-shadow:0px 0px 5px 5px rgba(254, 216, 170, 0.72)}
+            50% {box-shadow:0px 0px 5px 5px rgba(255, 126, 126, 0.66);
+                 border:double;}
+            75% {box-shadow:0px 0px 5px 5px rgba(144, 251, 139, 0.69)}
+            100% {box-shadow:0px 0px 5px 5px rgba(255, 255, 255,0.8);border:double;}
+        }
         #info_area {
             width: 500px;
-            height: 200px;
-            background-color: rgba(255, 255, 255,0.5);
-            position: fixed;
-            left: 35.5%;
-            top: 260px;
+            height: 75px;
+            background-color: rgb(0, 0, 0);
+            position: absolute;
+            left: 50%;
+            top: 10%;
             border-radius: 10px;
+            border:solid 5px white;
+            transform:translateX(-50%);
         }
-        
+       
+        #musicMenu {
+            width:600px;
+            height:30px;
+            font-size:10pt;
+            font-weight:800;
+            background-color:rgb(0, 0, 0);
+            color:white;
+            border-radius:20px;
+            border:none;
+            box-shadow:0px 0px 12px 8px rgba(125, 125, 125, 0.4) ;
+            font-family:微軟正黑體;
+        }
+        #musicMenu:hover {
+            box-shadow:0px 0px 5px 5px rgba(102, 217, 255, 0.68) ;
+        }
         marquee {
             font-family: 微軟正黑體;
             font-size: 14pt;
-            font-weight: 500;
-            color: black;
-            -webkit-text-stroke: 0.7px white;
-            position: relative;
-            left: 10px;
-         
-        #marquee_now_song{
-            width: 420px;
-            height: 20px;
-            position: relative;
-            left: 10px;
-            top: 3px;
+            font-weight: 800;
+            color: white;
+            text-align: center;
+            word-spacing:4pt;
+            letter-spacing:1pt;
         }
-        
-        
-        
+        #marquee_now_song{
+            width: 487px;
+            height: 72px;
+            padding-left:5px;
+            padding-right:5px;
+        }
+        .Slider {
+            -webkit-appearance: none;  /* Override default CSS styles */
+            width: 25%; /* Full-width */
+            height: 6px; /* Specified height */
+            background: #d3d3d3; /* Grey background */
+            outline: none; /* Remove outline */
+            opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+            box-shadow:0 0 2px 1px rgba(255, 255, 255,0.7);
+            -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+            transition: opacity .2s;
+            border-radius:10px;
+        }
+
+        /* Mouse-over effects */
+        .Slider:hover {
+          opacity: 1; /* Fully shown on mouse-over */
+        }
+        /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
+        .Slider::-webkit-slider-thumb {
+            -webkit-appearance: none; /* Override default look */
+            width: 20px; /* Set a specific slider handle width */
+            height: 20px; /* Slider handle height */
+            border-radius:50%;
+            background:rgba(255, 255, 255,0.7); /* Green background */
+            cursor: pointer; /* Cursor on hover */
+        }
+        .Slider::-webkit-slider-thumb:hover {
+            background:rgba(102, 217, 255, 0.68);
+            transition:.2s;
+            border-radius:5px;
+            
+        }
+        .Slider:-moz-range-thumb {
+            width: 20px; /* Set a specific slider handle width */
+            height: 20px; /* Slider handle height */
+            border-radius:10px;
+            background:rgba(128, 128, 128, 0.75); /* Green background */
+            cursor: pointer; /* Cursor on hover */
+        }
+        #VolumeSlider {
+            position:absolute;
+            left:50%;
+            right:50%;
+            transform:translate(65%,35px);
+        }
     </style>
-
-
 </head>
 <body>
     <div>
 
         <audio id="audio" controls="controls">
-            <source src="MUSIC/Zedd,%20Katy%20Perry%20-%20365.mp3" type="audio/mp3" />
-            <source src="MUSIC/Anne-Marie - Then.mp3" type="audio/mp3" />
-            <source src="MUSIC/Alan Walker, Sabrina Carpenter & Farruko - On My Way.mp3" type="audio/mp3" />
-            <source src="MUSIC/蔡依林-玫瑰少年.mp3" type="audio/mp3" />
+             <source id="nowSong" src="MUSIC/Zedd,%20Katy%20Perry%20-%20365.mp3" type="audio/mp3" />
             
         </audio>
 
         <div id="player">
-            <div id="info_area">
-                <marquee id="marquee_now_song" scrollamount="2" direction="up">目前播放歌曲：小幸運</marquee>
+            <div id="info_area" class="">
+                <marquee id="marquee_now_song" scrollamount="2" direction="up">-請點擊播放-</marquee>
             </div>
-
-
-            <table style="width:500px;height:145px;border:1px dashed white;position:relative;top:265px;left:10%">
-                <tr>
-                    <td style="height:80px;">
-                        <img class="buttonBG" id="Previous" title="Previous" style="left:3%" src="music-player_icon/118357-music-player-options/png/previous.png" />
-                        <img class="buttonBG" id="Rewind" title="Rewind" style="left:6%" src="music-player_icon/118357-music-player-options/png/rewind.png" />
-                        <img class="buttonBG" id="Pause" title="Pause" style="left:9%;visibility:hidden" src="music-player_icon/118357-music-player-options/png/pause.png" />
-                        <img class="buttonBG" id="Play" title="Play" style="left:-9px" src="music-player_icon/118357-music-player-options/png/play-button.png" />
-                        <img class="buttonBG" id="Stop" title="Stop" style="left:0%" src="music-player_icon/118357-music-player-options/png/stop.png" />
-                        <img class="buttonBG" id="Fast-Forward" title="Fast-Forward" style="left:3%" src="music-player_icon/118357-music-player-options/png/fast-forward.png" />
-                        <img class="buttonBG" id="Next" title="Next" style="left:6%" src="music-player_icon/118357-music-player-options/png/next.png" />
-                        <img class="buttonBG" id="Shuffle" title="shuffle" style="left:9%" src="music-player_icon/118357-music-player-options/png/shuffle.png" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="buttonBG" id="Volume" title="Volume" style="left:3%" src="music-player_icon/118357-music-player-options/png/volume.png" />
-                        <img class="buttonBG" id="Mute" title="Mute" style="left:6%" src="music-player_icon/118357-music-player-options/png/mute.png" />
-                        <img class="buttonBG" id="Repeat_all" title="Repeat_ALL" style="left:9%" src="music-player_icon/118357-music-player-options/png/repeat.png" />
-                        <img class="buttonBG2" ID="repeat_one" title="Repeat_ONE" style="left:12%;" src="music-player_icon/baseline_repeat_one_black_48dp.png" />
-                    </td>
-                </tr>
-            </table>
-
+            <div>
+                <div id="controlpanel_one" style="height:100px;">
+                    <span class="material-icons buttonBG" id="Previous" style="left:5%">skip_previous</span>
+                    <span class="material-icons buttonBG" id="Rewind" style="left:20%">fast_rewind</span>
+                    <span class="material-icons buttonBG" id="Play" style="left:35%">play_arrow</span>
+                    <span class="material-icons buttonBG" id="Stop" style="left:50%">stop</span>
+                    <span class="material-icons buttonBG" id="Fast-Forward" style="left:65%">fast_forward</span>
+                    <span class="material-icons buttonBG" id="Next" style="left:80%">skip_next</span>
+                    
+                </div>
+                <div id="controlpanel_two">
+                    <!--<span class="material-icons buttonBG" id="Mute" style="left:2%">volume_off</span>-->
+                    <span class="material-icons buttonBG" id="Volume" style="left:5%">volume_up</span>
+                    <span class="material-icons buttonBG" id="Repeat_all" style="left:20%">repeat</span>
+                    <span class="material-icons buttonBG" id="Shuffle" style="left:35%">shuffle</span>
+                    <span class="material-icons buttonBG" id="repeat_one" style="left:50%">repeat_one</span>
+                    <input type="range" min="0" max="100" value="70" class="Slider" id="VolumeSlider">
+                </div>
+                <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,140px);">
+                    <select id="musicMenu">
+                        <option value="MUSIC/Zedd,%20Katy%20Perry%20-%20365.mp3">Zedd & KatyPerry-365</option>
+                        <option value="MUSIC/Anne-Marie - Then.mp3">Anne-Marie - Then</option>
+                        <option value="MUSIC/Alan Walker, Sabrina Carpenter & Farruko - On My Way.mp3">Alan Walker, Sabrina Carpenter & Farruko - On My Way</option>
+                        <option value="MUSIC/蔡依林-玫瑰少年.mp3">蔡依林 - 玫瑰少年</option>
+                        <option value="MUSIC/Shawn%20Mendes&Camila%20Cabello%20-%20Senorita.mp3">Shawn Mendes & Camila Cabello - Senorita</option>
+                        <option value="MUSIC/Beyonce%20-%20Run%20The%20World.mp3">Beyonce - Run The World</option>
+                        <option value="MUSIC/Unknown%20Brain%20Feat.%20Bri%20Tolani-Why%20Do%20I.mp3">Unknown Brain Feat. Bri Tolani - Why Do I</option>
+                        <option value="MUSIC/Bellie%20Eilish-Bad%20Guy.mp3">Bellie Eilish - Bad Guy</option>
+                        <option value="MUSIC/AvengersThemeRemix.mp3">AvengersThemeRemix</option>
+                    </select>
+                </div>
+            </div>
+            
         </div>
-
+        
     </div>
     <script>
-        function PlayMusic() {
+        //在點擊按鈕時，上層的節點也會被觸發事件，故由button父節點來判斷哪個按鈕被觸發
+        function objEvent(evt) {                                                               
+            console.log(evt.target.id);
+            console.log(evt.target);
+            obj = evt.target;
+            //id = evt.target.id;
+            switch (obj.id) {
+                case "Play":
+                    PlayMusic(obj);
+                    break;
+                case "Pause":
+                    PauseMusic(obj);
+                    break;
+                case "Stop":
+                    StopMusic(obj);
+                    break;
+                case "Fast-Forward":
+                    speedAdjust(1);
+                    break;
+                case "Rewind":
+                    speedAdjust(2);
+                    break;
+                case "Next":
+                    changeSong(true,obj);
+                    break;
+                case "Previous":
+                    changeSong(false,obj);
+                    break;
+            }
+        } 
+        //在點擊按鈕時，上層的節點也會被觸發事件，故由button父節點來判斷哪個按鈕被觸發，第二排button
+        function objEvent2(evt2) {
+            obj = evt2.target;
+            console.log(obj);
+            switch (obj.id) {
+                case "Volume":
+                    Mute(true,obj);
+                    break;
+                case "Mute":
+                    Mute(false,obj);
+                    break;
+                case "repeat_one":
+                    MusicRepeatOne();
+                    break;
+                case "Repeat_all":
+                    MusicRepeatAll();
+                    break;
+            }
+
+        }
+        //下拉式選單中直接換歌，直接選歌後會直接播放歌曲
+        function changeMusicMenu() {
+            index = musicMenu.selectedIndex;
+            nowSong.src = musicMenu.options[index].value;
+            audio.load();
+            PlayMusic(musicMenu.parentElement.previousElementSibling.previousElementSibling.firstChild.nextElementSibling.nextElementSibling.nextElementSibling);
+            ChangeMarquee("play");
+            
+        } 
+        //播放音樂並改圖示為暫停、播放音樂時啟動資訊看板邊框特效，預設全曲循環
+        function PlayMusic(obj) {
             audio.play();
+            obj.id = "Pause";
+            obj.innerText = "pause";
+            ChangeMarquee("play");
+            info_area.className = "info_area_play";
         }
-        function PauseMusic() {
+        //暫停音樂並改圖示為播放
+        function PauseMusic(obj) {
             audio.pause();
+            obj.id = "Play";
+            obj.innerText = "play_arrow";
+            info_area.className = "";
+            ChangeMarquee("pause");
         }
-        function showplay() {
-            play.style.visibility = "visible";
-            pause.style.visibility = "hidden";
+        //停止音樂，將前一個兄弟(即播放暫停按鈕)改為播放圖示
+        function StopMusic(obj) {
+            PauseMusic(obj.previousElementSibling);             
+            audio.currentTime = 0;
+            info_area.className = "";
+            ChangeMarquee("stop");
         }
-        function showpause() {
-            pause.style.visibility = "visible";
-            play.style.visibility = "hidden";
+        //快轉、倒轉
+        function speedAdjust(flag) {
+            if (flag == 1) {
+                audio.currentTime += 10;
+                ChangeMarquee("fast");
+            } else {
+                audio.currentTime -= 10;
+                ChangeMarquee("rewind");
+            }
         }
-        function muteMusic() {
+        //上一首、下一首
+        function changeSong(flag,obj) {
+            index = musicMenu.selectedIndex;
+            console.log(index);
+            if (flag==true) {
+                index++;
+            } else {
+                index--;
+            }
+            nowSong.src = musicMenu.options[index].value;
+            musicMenu.options[index].selected = true;
+            audio.load();
+            if (flag==true) {
+                PlayMusic(obj.previousElementSibling.previousElementSibling.previousElementSibling);
+            } else {
+                PlayMusic(obj.nextElementSibling.nextElementSibling);
+            }
+            console.log(index);
+
+            lastMusic_index = (musicMenu.options.length) - 1;
+            if (lastMusic_index == index) {
+                musicMenu.options[0].selected = true;
+                changeMusicMenu();
+            //} else if (index==0) {                                                     第一首歌上一首未完成
+            //    musicMenu.options[lastMusic_index-1].selected = true;
+            //    changeMusicMenu();
+            //}
+        } 
+        //靜音、取消靜音
+        function Mute(a,b) {
+            if (a) {
+                audio.muted = true;
+                b.innerText = "volume_off";
+                b.id = "Mute";
+            } else {
+                audio.muted = false;
+                b.innerText = "volume_up";
+                b.id = "Volume";
+            }
+        }
+        //改變跑馬燈狀態
+        function ChangeMarquee(x) {
+            index = musicMenu.selectedIndex;
+            if (x == "play") {
+                marquee_now_song.innerText = "目前播放：" + musicMenu.options[index].innerText;
+            } else if (x == "pause") {
+                marquee_now_song.innerText = "-音樂暫停-";
+            } else if (x == "stop") {
+                marquee_now_song.innerText = "-音樂停止-";
+            } else if (x == "fast") {
+                marquee_now_song.innerText = "-音樂快轉-";
+                setTimeout(function () {marquee_now_song.innerText = "-請點擊播放-"; }, 2000);
+                if (controlpanel_one.firstElementChild.nextElementSibling.nextElementSibling.id == "Pause") {
+                    checkNowStatement();
+                }
+            } else if (x == "rewind") {
+                marquee_now_song.innerText = "-音樂倒轉-";
+                setTimeout(function () {marquee_now_song.innerText = "-請點擊播放-"; }, 2000);
+                if (controlpanel_one.firstElementChild.nextElementSibling.nextElementSibling.id == "Pause") {
+                    checkNowStatement();
+                }
+            }
+        }
+        //判斷目前是否播放顯示對應跑馬燈
+        function checkNowStatement() {
+            if (controlpanel_one.firstElementChild.nextElementSibling.nextElementSibling.id == "Pause") {
+                    setTimeout(function () {
+                    ChangeMarquee("play");
+                    }, 2000);
+                } else {
+                    setTimeout(function () {
+                    ChangeMarquee("pause");
+                    }, 2000);
+                }
+        }
+        //單曲循環
+        function MusicRepeatOne() {
+            audio.loop = "loop";
+        }
+        //全曲循環
+        function MusicRepeatAll() {
+            lastMusic_index = (musicMenu.options.length) - 1;
+            nowMusic_index = musicMenu.selectedIndex;
+            if (lastMusic_index == nowMusic_index) {
+                musicMenu.options[0].selected = true;
+                changeMusicMenu();
+                
+            } else {
+                changeSong(true);
+            }
+            //while (nowMusic_index<=1) {
+            //    audio.addEventListener("ended", function () {
+            //        musicMenu.options[1].selected = true;
+            //        MusicRepeatAll();
+            //    });
+            //    if(nowMusic_index==2)
+            //        break;
+            //}
+            
             
         }
+        function changeVolume() {
+
+        }
+
+        //取得document object
         var audio = document.getElementById("audio");
-        var play = document.getElementById("Play");
-        var pause = document.getElementById("Pause");
+        var controlpanel_one = document.getElementById("controlpanel_one");
+        var controlpanel_two = document.getElementById("controlpanel_two");
+        var musicMenu = document.getElementById("musicMenu");
+        var nowSong = document.getElementById("nowSong");
+        var Next = document.getElementById("Next");
+        var Previous = document.getElementById("Previous");
+        var marquee_now_song = document.getElementById("marquee_now_song");
+        var info_area = document.getElementById("info_area");
+        var VolumeSlider = document.getElementById("VolumeSlider");
+        
+
        
-        play.addEventListener("click", PlayMusic);
-        play.addEventListener("click", showpause);
+        
+       
+        //事件監聽器
+        controlpanel_one.addEventListener("click", objEvent);
+        controlpanel_two.addEventListener("click", objEvent2);
+        musicMenu.addEventListener("change", changeMusicMenu);
+        
+        audio.addEventListener("ended", MusicRepeatAll);
+        VolumeSlider.addEventListener("change", changeVolume);
+        
 
-        pause.addEventListener("click", PauseMusic);
-        pause.addEventListener("click", showplay);
-
+        console.log();
+        
+        
         
         
 
