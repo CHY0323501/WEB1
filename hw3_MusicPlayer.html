@@ -144,7 +144,6 @@
             background:rgba(102, 217, 255, 0.68);
             transition:.2s;
             border-radius:5px;
-            
         }
         .Slider:-moz-range-thumb {
             width: 20px; /* Set a specific slider handle width */
@@ -157,7 +156,20 @@
             position:absolute;
             left:50%;
             right:50%;
-            transform:translate(65%,35px);
+            transform:translate(65%,55px);
+        }
+        .vol_adjust {
+            position:absolute;
+            top:85%;
+            border:none;
+            border-radius:5px;
+            background-color:rgba(255, 255, 255, 0.72);
+            box-shadow: 0 0 13px rgba(255, 255, 255,0.8);
+        }
+        #duration {
+            position:absolute;
+            left:40%;
+            top:11%;
         }
     </style>
 </head>
@@ -166,7 +178,6 @@
 
         <audio id="audio" controls="controls">
              <source id="nowSong" src="MUSIC/Zedd,%20Katy%20Perry%20-%20365.mp3" type="audio/mp3" />
-            
         </audio>
 
         <div id="player">
@@ -183,6 +194,7 @@
                     <span class="material-icons buttonBG" id="Next" style="left:80%">skip_next</span>
                     
                 </div>
+                <div id="duration" style="color:white">00:00 / 00:00</div>
                 <div id="controlpanel_two">
                     <!--<span class="material-icons buttonBG" id="Mute" style="left:2%">volume_off</span>-->
                     <span class="material-icons buttonBG" id="Volume" style="left:5%">volume_up</span>
@@ -190,6 +202,10 @@
                     <span class="material-icons buttonBG" id="Shuffle" style="left:35%">shuffle</span>
                     <span class="material-icons buttonBG" id="repeat_one" style="left:50%">repeat_one</span>
                     <input type="range" min="0" max="100" value="70" class="Slider" id="VolumeSlider">
+                    <input class="vol_adjust" id="vol_p" style="width:30px;left:67%" type="button" value=" + " />
+                    <input class="vol_adjust" id="vol_m" style="width:30px;left:75%" type="button" value=" - " />
+                    <input class="vol_adjust" id="vol_info" style="width:30px;left:84%;text-align:center" type="text" value="70" max="100" min="0" readonly="readonly"/>
+                    
                 </div>
                 <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,140px);">
                     <select id="musicMenu">
@@ -210,6 +226,35 @@
         
     </div>
     <script>
+        //取得document object
+        var audio = document.getElementById("audio");
+        var controlpanel_one = document.getElementById("controlpanel_one");
+        var controlpanel_two = document.getElementById("controlpanel_two");
+        var musicMenu = document.getElementById("musicMenu");
+        var nowSong = document.getElementById("nowSong");
+        var Next = document.getElementById("Next");
+        var Previous = document.getElementById("Previous");
+        var marquee_now_song = document.getElementById("marquee_now_song");
+        var info_area = document.getElementById("info_area");
+        var VolumeSlider = document.getElementById("VolumeSlider");
+        var duration = document.getElementById("duration");
+        var vol_p = document.getElementById("vol_p");
+        var vol_m = document.getElementById("vol_m");
+        var vol_info = document.getElementById("vol_info");
+
+        //瀏覽器偵測
+        function browserTest() {
+            if (navigator.userAgent.search("Chrome") != -1)
+                return "input";
+            if (navigator.userAgent.search("Firefox") != -1)
+                return "input";
+            if (navigator.userAgent.search("Opera") != -1)
+                return "input";
+            else
+                return "change";
+            //console.log(navigator.userAgent);
+        }
+
         //在點擊按鈕時，上層的節點也會被觸發事件，故由button父節點來判斷哪個按鈕被觸發
         function objEvent(evt) {                                                               
             console.log(evt.target.id);
@@ -257,25 +302,55 @@
                 case "Repeat_all":
                     MusicRepeatAll();
                     break;
+                case "vol_p":
+                    changeVolume(2);
+                    break;
+                case "vol_m":
+                    changeVolume(3);
+                    break;
             }
 
+        }
+        //將時間從秒數轉換為幾分幾秒的格式        function getTimeFormat(timeSec) {
+            minute = Math.floor(timeSec / 60);
+            second = timeSec % 60;
+            minute = minute < 10 ? "0" + minute : minute;
+            second = second < 10 ? "0" + second : second;
+            return minute + ":" + second;
+        }
+        //取得目前播放時間資訊
+        function getDuration() { 
+            songDuration = Math.round(audio.duration);
+            songCurrent = Math.round(audio.currentTime);
+            //while (songDuration == NaN) {
+                    
+            //    duration.innerText = getTimeFormat(songCurrent) + " / 00:00";
+            //}
+            duration.innerText = getTimeFormat(songCurrent) + " / " + getTimeFormat(songDuration);
+            if (songDuration == songCurrent) {
+                changeSong(true,Previous.nextElementSibling.nextElementSibling);
+            }
+            setTimeout(getDuration, 1000);
         }
         //下拉式選單中直接換歌，直接選歌後會直接播放歌曲
         function changeMusicMenu() {
             index = musicMenu.selectedIndex;
             nowSong.src = musicMenu.options[index].value;
-            audio.load();
-            PlayMusic(musicMenu.parentElement.previousElementSibling.previousElementSibling.firstChild.nextElementSibling.nextElementSibling.nextElementSibling);
+            console.log(musicMenu.options[index].value);
+            if (!audio.paused) {
+                PlayMusic(document.getElementById("Play"));
+            } 
             ChangeMarquee("play");
-            
         } 
         //播放音樂並改圖示為暫停、播放音樂時啟動資訊看板邊框特效，預設全曲循環
         function PlayMusic(obj) {
+            audio.load();
             audio.play();
             obj.id = "Pause";
             obj.innerText = "pause";
             ChangeMarquee("play");
             info_area.className = "info_area_play";
+            getDuration();
         }
         //暫停音樂並改圖示為播放
         function PauseMusic(obj) {
@@ -302,14 +377,23 @@
                 ChangeMarquee("rewind");
             }
         }
-        //上一首、下一首
+        //上一首、下一首，若在第一首歌按上一首，則回到最後一首(環狀)
         function changeSong(flag,obj) {
             index = musicMenu.selectedIndex;
+            lastMusic_index = (musicMenu.options.length) - 1;
             console.log(index);
-            if (flag==true) {
-                index++;
+            if (flag == true) {
+                if (index < lastMusic_index) {
+                    index++;
+                } else {
+                    index = 0;
+                }
             } else {
-                index--;
+                if (index > 0) {
+                    index--;
+                } else {
+                    index = lastMusic_index;
+                }
             }
             nowSong.src = musicMenu.options[index].value;
             musicMenu.options[index].selected = true;
@@ -320,15 +404,6 @@
                 PlayMusic(obj.nextElementSibling.nextElementSibling);
             }
             console.log(index);
-
-            lastMusic_index = (musicMenu.options.length) - 1;
-            if (lastMusic_index == index) {
-                musicMenu.options[0].selected = true;
-                changeMusicMenu();
-            //} else if (index==0) {                                                     第一首歌上一首未完成
-            //    musicMenu.options[lastMusic_index-1].selected = true;
-            //    changeMusicMenu();
-            //}
         } 
         //靜音、取消靜音
         function Mute(a,b) {
@@ -392,47 +467,30 @@
             } else {
                 changeSong(true);
             }
-            //while (nowMusic_index<=1) {
-            //    audio.addEventListener("ended", function () {
-            //        musicMenu.options[1].selected = true;
-            //        MusicRepeatAll();
-            //    });
-            //    if(nowMusic_index==2)
-            //        break;
-            //}
-            
-            
         }
-        function changeVolume() {
+        //音量設定
+        function changeVolume(flag) {
+            if (flag == 2) {
+                VolumeSlider.value++;
+            } else if (flag == 3) {
+                VolumeSlider.value--;
+            }
+            vol_info.value = VolumeSlider.value;
+            audio.volume = vol_info.value / 100;
+            console.log(audio.volume);        }
 
-        }
-
-        //取得document object
-        var audio = document.getElementById("audio");
-        var controlpanel_one = document.getElementById("controlpanel_one");
-        var controlpanel_two = document.getElementById("controlpanel_two");
-        var musicMenu = document.getElementById("musicMenu");
-        var nowSong = document.getElementById("nowSong");
-        var Next = document.getElementById("Next");
-        var Previous = document.getElementById("Previous");
-        var marquee_now_song = document.getElementById("marquee_now_song");
-        var info_area = document.getElementById("info_area");
-        var VolumeSlider = document.getElementById("VolumeSlider");
         
 
-       
-        
        
         //事件監聽器
         controlpanel_one.addEventListener("click", objEvent);
         controlpanel_two.addEventListener("click", objEvent2);
         musicMenu.addEventListener("change", changeMusicMenu);
-        
+
         audio.addEventListener("ended", MusicRepeatAll);
-        VolumeSlider.addEventListener("change", changeVolume);
+        VolumeSlider.addEventListener(browserTest(), function () { changeVolume(1); });
         
 
-        console.log();
         
         
         
