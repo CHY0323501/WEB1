@@ -99,6 +99,7 @@
         #musicMenu:hover {
             box-shadow:0px 0px 5px 5px rgba(102, 217, 255, 0.68) ;
         }
+        
         marquee {
             font-family: 微軟正黑體;
             font-size: 14pt;
@@ -165,11 +166,17 @@
             border-radius:5px;
             background-color:rgba(255, 255, 255, 0.72);
             box-shadow: 0 0 13px rgba(255, 255, 255,0.8);
+            transition:.2s;
+            font-family:Calibri;
+            font-size:0.9rem;
         }
         #duration {
             position:absolute;
             left:40%;
             top:11%;
+        }
+        .slider_change {
+            box-shadow:0px 0px 5px 5px rgba(102, 217, 255, 0.68) ;
         }
     </style>
 </head>
@@ -186,25 +193,26 @@
             </div>
             <div>
                 <div id="controlpanel_one" style="height:100px;">
-                    <span class="material-icons buttonBG" id="Previous" style="left:5%">skip_previous</span>
-                    <span class="material-icons buttonBG" id="Rewind" style="left:20%">fast_rewind</span>
-                    <span class="material-icons buttonBG" id="Play" style="left:35%">play_arrow</span>
-                    <span class="material-icons buttonBG" id="Stop" style="left:50%">stop</span>
-                    <span class="material-icons buttonBG" id="Fast-Forward" style="left:65%">fast_forward</span>
-                    <span class="material-icons buttonBG" id="Next" style="left:80%">skip_next</span>
+                    <span class="material-icons buttonBG" id="Previous" style="left:3%">skip_previous</span>
+                    <span class="material-icons buttonBG" id="Rewind" style="left:17%">fast_rewind</span>
+                    <span class="material-icons buttonBG" id="Play" style="left:31%">play_arrow</span>
+                    <span class="material-icons buttonBG" id="Stop" style="left:45%">stop</span>
+                    <span class="material-icons buttonBG" id="Fast-Forward" style="left:59%">fast_forward</span>
+                    <span class="material-icons buttonBG" id="Next" style="left:73%">skip_next</span>
+                    <span class="material-icons buttonBG" id="list" style="left:87%">list</span>
                     
                 </div>
-                <div id="duration" style="color:white">00:00 / 00:00</div>
+                <div id="duration" style="color:white;font-family:Calibri">00:00 / 00:00</div>
                 <div id="controlpanel_two">
                     <!--<span class="material-icons buttonBG" id="Mute" style="left:2%">volume_off</span>-->
-                    <span class="material-icons buttonBG" id="Volume" style="left:5%">volume_up</span>
+                    <span class="material-icons buttonBG" id="Volume"  style="left:5%">volume_up</span>
                     <span class="material-icons buttonBG" id="Repeat_all" style="left:20%">repeat</span>
                     <span class="material-icons buttonBG" id="Shuffle" style="left:35%">shuffle</span>
-                    <span class="material-icons buttonBG" id="repeat_one" style="left:50%">repeat_one</span>
+                    <span class="material-icons buttonBG" id="repeat_one" title="repeat_one" style="left:50%">repeat_one</span>
                     <input type="range" min="0" max="100" value="70" class="Slider" id="VolumeSlider">
                     <input class="vol_adjust" id="vol_p" style="width:30px;left:67%" type="button" value=" + " />
                     <input class="vol_adjust" id="vol_m" style="width:30px;left:75%" type="button" value=" - " />
-                    <input class="vol_adjust" id="vol_info" style="width:30px;left:84%;text-align:center" type="text" value="70" max="100" min="0" readonly="readonly"/>
+                    <input class="vol_adjust" id="vol_info" style="width:30px;left:84%;text-align:center;font-weight:700;color:rgba(0, 0, 0,0.5)" type="text" value="70" max="100" min="0" readonly="readonly"/>
                     
                 </div>
                 <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,140px);">
@@ -241,6 +249,7 @@
         var vol_p = document.getElementById("vol_p");
         var vol_m = document.getElementById("vol_m");
         var vol_info = document.getElementById("vol_info");
+        var repeat_one = document.getElementById("repeat_one");
 
         //瀏覽器偵測
         function browserTest() {
@@ -297,7 +306,7 @@
                     Mute(false,obj);
                     break;
                 case "repeat_one":
-                    MusicRepeatOne();
+                    MusicRepeatOne(obj);
                     break;
                 case "Repeat_all":
                     MusicRepeatAll();
@@ -336,9 +345,10 @@
         function changeMusicMenu() {
             index = musicMenu.selectedIndex;
             nowSong.src = musicMenu.options[index].value;
-            console.log(musicMenu.options[index].value);
-            if (!audio.paused) {
-                PlayMusic(document.getElementById("Play"));
+            musicMenu.options[index].selected = true;            audio.currentTime = 0;
+            if (audio.paused == false) {
+                audio.autoplay = "autoplay";
+                PlayMusic(Next.previousElementSibling.previousElementSibling.previousElementSibling);
             } 
             ChangeMarquee("play");
         } 
@@ -380,8 +390,7 @@
         //上一首、下一首，若在第一首歌按上一首，則回到最後一首(環狀)
         function changeSong(flag,obj) {
             index = musicMenu.selectedIndex;
-            lastMusic_index = (musicMenu.options.length) - 1;
-            console.log(index);
+            lastMusic_index = musicMenu.options.length - 1;
             if (flag == true) {
                 if (index < lastMusic_index) {
                     index++;
@@ -397,13 +406,7 @@
             }
             nowSong.src = musicMenu.options[index].value;
             musicMenu.options[index].selected = true;
-            audio.load();
-            if (flag==true) {
-                PlayMusic(obj.previousElementSibling.previousElementSibling.previousElementSibling);
-            } else {
-                PlayMusic(obj.nextElementSibling.nextElementSibling);
-            }
-            console.log(index);
+            changeMusicMenu();
         } 
         //靜音、取消靜音
         function Mute(a,b) {
@@ -453,8 +456,19 @@
                 }
         }
         //單曲循環
-        function MusicRepeatOne() {
-            audio.loop = "loop";
+        function MusicRepeatOne(obj) {
+            if (obj.title=="repeat_one") {
+                audio.loop = "loop";
+                obj.title = "not_repeat_one";
+                repeat_one.style.boxShadow = "0px 0px 5px 5px rgba(102, 217, 255, 0.68)";
+            } else  {
+                audio.loop = false;
+                obj.title = "repeat_one";
+                repeat_one.style.boxShadow = "0 0 13px rgba(255, 255, 255,0.8)";
+                if (audio.paused == false) {
+                    audio.autoplay = "autoplay";
+                }
+            }
         }
         //全曲循環
         function MusicRepeatAll() {
@@ -463,7 +477,6 @@
             if (lastMusic_index == nowMusic_index) {
                 musicMenu.options[0].selected = true;
                 changeMusicMenu();
-                
             } else {
                 changeSong(true);
             }
@@ -476,9 +489,13 @@
                 VolumeSlider.value--;
             }
             vol_info.value = VolumeSlider.value;
+            vol_info.className += " slider_change";
+             setTimeout(slider_Change_control, 1000);
             audio.volume = vol_info.value / 100;
-            console.log(audio.volume);        }
-
+        }
+        function slider_Change_control() {
+            vol_info.className= "vol_adjust";
+        }
         
 
        
