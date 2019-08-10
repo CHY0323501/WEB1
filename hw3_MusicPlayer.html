@@ -11,7 +11,7 @@
             margin:0;
             padding:0;
         }
-        #player {
+        .player {
             width: 600px;
             height: 310px;
             position: absolute;
@@ -26,17 +26,37 @@
             animation-name:changeColor;
             animation-iteration-count: infinite;
             animation-direction:alternate;
+            transition-duration:1s;
         }
         @keyframes changeColor {
             0% {box-shadow: 0 0 40px  rgb(246, 245, 185);}
             100% {box-shadow: 0 0 80px  white;}
         }
+        /*開選單時，調整css*/
+        .player_change {
+            transform:translate(-50%,-50%);
+            transition-duration:1s;
+            height:600px;
+        }
+        .button_change {
+            transform:translateY(-40%);
+            transition-duration:1s;
+        }
+        .music_list_bg {
+            background: linear-gradient(209deg, rgba(227,48,29,0.1), rgba(238,141,61,0.1), rgba(236,240,84,0.1), rgba(84,191,240,0.1), rgba(143,84,240,0.1), rgba(242,106,200,0.1), rgba(238,48,105,0.1));
+            animation:music_list_bg1 ease infinite 5s;
+            background-size:500% 500%;
+            transition-duration:1.5s;
+        }
+        
+        /*調整結束*/
         #info_area+div {
             width:500px;
-            height:145px;
+            height:200px;   /*145*/
             position:absolute;
             top:35%;
             left:8.5%;
+
         }
         .buttonBG{
             width: 50px;
@@ -48,16 +68,34 @@
             cursor: pointer;
             box-shadow: 0 0 13px rgba(255, 255, 255,0.8);
             top:25%;
-            color:black;
+            color:rgba(255, 255, 255, 0.60);
             font-size:3rem;
             text-align:center;
         }
         #controlpanel_two>span{
-            top:80%;
+            top:65%;
         }
         .buttonBG:hover {
             box-shadow: 0 0 17px rgb(255, 255, 255);
         }
+        .music_list {
+            border-radius: 10px;
+            width: 500px;
+            height: 230px;
+            position:absolute;
+            left:50%;
+            top:50%;
+            transform:translate(-50%,45%);
+            opacity:0;
+            transition-duration:0.5s;
+            transition-delay:0.5s;
+        }
+        @keyframes music_list_bg1 {
+            0% {background-position: 0% 17%;}
+            50% {background-position: 100% 84%;}
+            100% {background-position: 0% 17%;}
+        }                            
+
         .info_area_play {
             animation-duration: 1.5s;
             animation-name:areaplay;
@@ -81,9 +119,8 @@
             top: 10%;
             border-radius: 10px;
             border:solid 5px white;
-            transform:translateX(-50%);
+            transform:translate(-50%,0);
         }
-       
         #musicMenu {
             width:600px;
             height:30px;
@@ -99,7 +136,6 @@
         #musicMenu:hover {
             box-shadow:0px 0px 5px 5px rgba(102, 217, 255, 0.68) ;
         }
-        
         marquee {
             font-family: 微軟正黑體;
             font-size: 14pt;
@@ -156,24 +192,27 @@
         #VolumeSlider {
             position:absolute;
             left:50%;
-            right:50%;
-            transform:translate(65%,55px);
+            transform:translate(65%,70px);
         }
         .vol_adjust {
             position:absolute;
-            top:85%;
+            top:70%;
             border:none;
             border-radius:5px;
             background-color:rgba(255, 255, 255, 0.72);
             box-shadow: 0 0 13px rgba(255, 255, 255,0.8);
-            transition:.2s;
+            transition:.5s;
             font-family:Calibri;
             font-size:0.9rem;
+            color:rgba(255, 255, 255, 1);
         }
-        #duration {
+        .duration {
             position:absolute;
             left:40%;
             top:11%;
+            color:white;
+            font-family:Calibri;
+            letter-spacing:1pt;
         }
         .slider_change {
             box-shadow:0px 0px 5px 5px rgba(102, 217, 255, 0.68) ;
@@ -187,11 +226,11 @@
              <source id="nowSong" src="MUSIC/Zedd,%20Katy%20Perry%20-%20365.mp3" type="audio/mp3" />
         </audio>
 
-        <div id="player">
+        <div id="player" class="player">
             <div id="info_area" class="">
                 <marquee id="marquee_now_song" scrollamount="2" direction="up">-請點擊播放-</marquee>
             </div>
-            <div>
+            <div style="transition-duration:1s">
                 <div id="controlpanel_one" style="height:100px;">
                     <span class="material-icons buttonBG" id="Previous" style="left:3%">skip_previous</span>
                     <span class="material-icons buttonBG" id="Rewind" style="left:17%">fast_rewind</span>
@@ -199,23 +238,21 @@
                     <span class="material-icons buttonBG" id="Stop" style="left:45%">stop</span>
                     <span class="material-icons buttonBG" id="Fast-Forward" style="left:59%">fast_forward</span>
                     <span class="material-icons buttonBG" id="Next" style="left:73%">skip_next</span>
-                    <span class="material-icons buttonBG" id="list" style="left:87%">list</span>
-                    
+                    <span class="material-icons buttonBG" id="list" style="left:87%" title="change_LARGE">list</span>
+                   
                 </div>
-                <div id="duration" style="color:white;font-family:Calibri">00:00 / 00:00</div>
+                <div id="duration" class="duration">00:00 / 00:00</div>
                 <div id="controlpanel_two">
-                    <!--<span class="material-icons buttonBG" id="Mute" style="left:2%">volume_off</span>-->
-                    <span class="material-icons buttonBG" id="Volume"  style="left:5%">volume_up</span>
+                    <span class="material-icons buttonBG" id="Volume" style="left:5%">volume_up</span>
                     <span class="material-icons buttonBG" id="Repeat_all" style="left:20%">repeat</span>
                     <span class="material-icons buttonBG" id="Shuffle" style="left:35%">shuffle</span>
                     <span class="material-icons buttonBG" id="repeat_one" title="repeat_one" style="left:50%">repeat_one</span>
                     <input type="range" min="0" max="100" value="70" class="Slider" id="VolumeSlider">
-                    <input class="vol_adjust" id="vol_p" style="width:30px;left:67%" type="button" value=" + " />
-                    <input class="vol_adjust" id="vol_m" style="width:30px;left:75%" type="button" value=" - " />
-                    <input class="vol_adjust" id="vol_info" style="width:30px;left:84%;text-align:center;font-weight:700;color:rgba(0, 0, 0,0.5)" type="text" value="70" max="100" min="0" readonly="readonly"/>
-                    
+                    <input class="vol_adjust" id="vol_p" style="width:30px;left:67%;font-weight:900" type="button" value=" ＋ " />
+                    <input class="vol_adjust" id="vol_m" style="width:30px;left:75%;font-weight:900" type="button" value=" － " />
+                    <input class="vol_adjust" id="vol_info" style="width:30px;left:84%;text-align:center;font-weight:700;color:rgba(255, 255, 255, 0.60)" type="text" value="70" max="100" min="0" readonly="readonly" />
                 </div>
-                <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,140px);">
+                <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,110px);transition-duration:1s">
                     <select id="musicMenu">
                         <option value="MUSIC/Zedd,%20Katy%20Perry%20-%20365.mp3">Zedd & KatyPerry-365</option>
                         <option value="MUSIC/Anne-Marie - Then.mp3">Anne-Marie - Then</option>
@@ -228,10 +265,13 @@
                         <option value="MUSIC/AvengersThemeRemix.mp3">AvengersThemeRemix</option>
                     </select>
                 </div>
+                <div id="music_list" class="music_list">
+
+                </div>
             </div>
             
         </div>
-        
+       
     </div>
     <script>
         //取得document object
@@ -250,6 +290,9 @@
         var vol_m = document.getElementById("vol_m");
         var vol_info = document.getElementById("vol_info");
         var repeat_one = document.getElementById("repeat_one");
+        var player = document.getElementById("player");
+        var list = document.getElementById("list");
+        var music_list = document.getElementById("music_list");
 
         //瀏覽器偵測
         function browserTest() {
@@ -261,13 +304,10 @@
                 return "input";
             else
                 return "change";
-            //console.log(navigator.userAgent);
-        }
+            //console.log(navigator.userAgent);        }
 
         //在點擊按鈕時，上層的節點也會被觸發事件，故由button父節點來判斷哪個按鈕被觸發
         function objEvent(evt) {                                                               
-            console.log(evt.target.id);
-            console.log(evt.target);
             obj = evt.target;
             //id = evt.target.id;
             switch (obj.id) {
@@ -297,7 +337,6 @@
         //在點擊按鈕時，上層的節點也會被觸發事件，故由button父節點來判斷哪個按鈕被觸發，第二排button
         function objEvent2(evt2) {
             obj = evt2.target;
-            console.log(obj);
             switch (obj.id) {
                 case "Volume":
                     Mute(true,obj);
@@ -460,13 +499,14 @@
             if (obj.title=="repeat_one") {
                 audio.loop = "loop";
                 obj.title = "not_repeat_one";
-                repeat_one.style.boxShadow = "0px 0px 5px 5px rgba(102, 217, 255, 0.68)";
+                repeat_one.style.boxShadow = "0px 0px 15px 3px rgba(102, 217, 255, 0.68)";
             } else  {
                 audio.loop = false;
                 obj.title = "repeat_one";
                 repeat_one.style.boxShadow = "0 0 13px rgba(255, 255, 255,0.8)";
                 if (audio.paused == false) {
                     audio.autoplay = "autoplay";
+                    PlayMusic(Next.previousElementSibling.previousElementSibling.previousElementSibling);
                 }
             }
         }
@@ -490,13 +530,32 @@
             }
             vol_info.value = VolumeSlider.value;
             vol_info.className += " slider_change";
-             setTimeout(slider_Change_control, 1000);
+            setTimeout(slider_Change_control, 1000);
             audio.volume = vol_info.value / 100;
         }
         function slider_Change_control() {
             vol_info.className= "vol_adjust";
         }
-        
+        //清單展開效果
+        function changeCSS() {
+            if (list.value=="change_LARGE") {
+                player.className += " player_change";
+                info_area.nextElementSibling.className += "button_change";
+                controlpanel_two.nextElementSibling.style.top = "185%";
+                list.value = "change_SMALL";
+                music_list.style.opacity = "1";
+                music_list.style.border = "solid 5px rgba(255, 255, 255,0.8)";
+                music_list.className = "music_list music_list_bg ";
+            } else {
+                list.value = "change_LARGE";
+                player.className = "player";
+                info_area.nextElementSibling.className = "";
+                controlpanel_two.nextElementSibling.style.top = "50%";
+                music_list.style.opacity = "0";
+                music_list.style.border= "";
+                music_list.className = "music_list";
+            }
+        }
 
        
         //事件監聽器
@@ -506,13 +565,7 @@
 
         audio.addEventListener("ended", MusicRepeatAll);
         VolumeSlider.addEventListener(browserTest(), function () { changeVolume(1); });
-        
-
-        
-        
-        
-        
-
+        list.addEventListener("click", function () { changeCSS(); }); 
     </script>
 </body>
 </html>
