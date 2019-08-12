@@ -43,20 +43,20 @@
             transition-duration:1s;
         }
         .music_list_bg {
-            background: linear-gradient(209deg, rgba(227,48,29,0.1), rgba(238,141,61,0.1), rgba(236,240,84,0.1), rgba(84,191,240,0.1), rgba(143,84,240,0.1), rgba(242,106,200,0.1), rgba(238,48,105,0.1));
-            animation:music_list_bg1 ease infinite 5s;
-            background-size:500% 500%;
-            transition-duration:1.5s;
+            background: linear-gradient(209deg, rgba(227,48,29,0.5), rgba(238,141,61,0.5), rgba(236,240,84,0.5), rgba(84,191,240,0.5), rgba(143,84,240,0.5), rgba(242,106,200,0.5), rgba(238,48,105,0.5));
+            animation:music_list_bg1 alternate infinite 3s;
+            background-size:300% 300%;
+            transition:1.5s;
+            opacity:1;
         }
         
         /*調整結束*/
         #info_area+div {
             width:500px;
-            height:200px;   /*145*/
+            height:200px;  
             position:absolute;
-            top:35%;
-            left:8.5%;
-
+            top:38%;
+            left:10%;
         }
         .buttonBG{
             width: 50px;
@@ -67,33 +67,42 @@
             border-radius: 50%;
             cursor: pointer;
             box-shadow: 0 0 13px rgba(255, 255, 255,0.8);
-            top:25%;
+            top:45%;
             color:rgba(255, 255, 255, 0.60);
             font-size:3rem;
             text-align:center;
         }
+        #controlpanel_one span {
+            position:relative;
+            width:10%;
+            margin-right:3%;
+        }
         #controlpanel_two>span{
-            top:65%;
+            position:relative;
+            width:10%;
+            top:20%;
+            margin-left:5%;
+            
         }
         .buttonBG:hover {
             box-shadow: 0 0 17px rgb(255, 255, 255);
         }
         .music_list {
             border-radius: 10px;
-            width: 500px;
-            height: 230px;
+            width: 500px;height: 230px;
             position:absolute;
             left:50%;
             top:50%;
-            transform:translate(-50%,45%);
-            opacity:0;
+            transform:translate(-51%,38%);
             transition-duration:0.5s;
-            transition-delay:0.5s;
+            /*transition-delay:3s;*/
+            z-index: -1;
+            opacity:0;
         }
         @keyframes music_list_bg1 {
             0% {background-position: 0% 17%;}
-            50% {background-position: 100% 84%;}
-            100% {background-position: 0% 17%;}
+            50% {background-position: 50% 50%;}
+            100% {background-position: 100% 100%}
         }                            
 
         .info_area_play {
@@ -122,7 +131,7 @@
             transform:translate(-50%,0);
         }
         #musicMenu {
-            width:600px;
+            width:610px;
             height:30px;
             font-size:10pt;
             font-weight:800;
@@ -192,11 +201,11 @@
         #VolumeSlider {
             position:absolute;
             left:50%;
-            transform:translate(65%,70px);
+            transform:translate(70%,55PX);
         }
         .vol_adjust {
             position:absolute;
-            top:70%;
+            top:62%;
             border:none;
             border-radius:5px;
             background-color:rgba(255, 255, 255, 0.72);
@@ -208,14 +217,40 @@
         }
         .duration {
             position:absolute;
-            left:40%;
-            top:11%;
+            left:75%;
+            top:6%;
             color:white;
             font-family:Calibri;
             letter-spacing:1pt;
         }
+        #timebar {
+            background-color:white;
+            height:10px;
+            width:70%;
+            position:absolute;
+            top:8%;
+            left:0;
+            border-radius:3px;
+        }
+        #nowtime {
+            background-color:rgb(246, 245, 185);
+            height:10px;
+            border-radius:3px;
+        }
         .slider_change {
             box-shadow:0px 0px 5px 5px rgba(102, 217, 255, 0.68) ;
+        }
+        #music_list > div {
+        width:500px;
+        height:111px;
+        overflow:auto;
+        float:left;
+        font-family:微軟正黑體;
+        color:white;
+        font-size:10pt;
+        font-weight:800;
+        letter-spacing:0.5pt;
+        padding-left:2pt;
         }
     </style>
 </head>
@@ -223,7 +258,8 @@
     <div>
 
         <audio id="audio" controls="controls">
-             <source id="nowSong" src="MUSIC/Zedd,%20Katy%20Perry%20-%20365.mp3" type="audio/mp3" />
+            <source id="nowSong" type="audio/mp3" />
+            <!--src="MUSIC/Zedd,%20Katy%20Perry%20-%20365.mp3"-->
         </audio>
 
         <div id="player" class="player">
@@ -231,42 +267,51 @@
                 <marquee id="marquee_now_song" scrollamount="2" direction="up">-請點擊播放-</marquee>
             </div>
             <div style="transition-duration:1s">
+                <div id="timebar">
+                    <div id="nowtime"></div>
+                </div>
                 <div id="controlpanel_one" style="height:100px;">
-                    <span class="material-icons buttonBG" id="Previous" style="left:3%">skip_previous</span>
-                    <span class="material-icons buttonBG" id="Rewind" style="left:17%">fast_rewind</span>
-                    <span class="material-icons buttonBG" id="Play" style="left:31%">play_arrow</span>
-                    <span class="material-icons buttonBG" id="Stop" style="left:45%">stop</span>
-                    <span class="material-icons buttonBG" id="Fast-Forward" style="left:59%">fast_forward</span>
-                    <span class="material-icons buttonBG" id="Next" style="left:73%">skip_next</span>
-                    <span class="material-icons buttonBG" id="list" style="left:87%" title="change_LARGE">list</span>
-                   
+                    <span class="material-icons buttonBG" id="Previous">skip_previous</span>
+                    <span class="material-icons buttonBG" id="Rewind">fast_rewind</span>
+                    <span class="material-icons buttonBG" id="Play" >play_arrow</span>
+                    <span class="material-icons buttonBG" id="Stop" >stop</span>
+                    <span class="material-icons buttonBG" id="Fast-Forward" >fast_forward</span>
+                    <span class="material-icons buttonBG" id="Next" >skip_next</span>
+                    <span class="material-icons buttonBG" id="list"  title="change_LARGE">list</span>
                 </div>
                 <div id="duration" class="duration">00:00 / 00:00</div>
-                <div id="controlpanel_two">
-                    <span class="material-icons buttonBG" id="Volume" style="left:5%">volume_up</span>
-                    <span class="material-icons buttonBG" id="Repeat_all" style="left:20%">repeat</span>
-                    <span class="material-icons buttonBG" id="Shuffle" style="left:35%">shuffle</span>
-                    <span class="material-icons buttonBG" id="repeat_one" title="repeat_one" style="left:50%">repeat_one</span>
+                <div id="controlpanel_two"  style="height:100px;">
+                    <span class="material-icons buttonBG" id="Volume">volume_up</span>
+                    <span class="material-icons buttonBG" id="Repeat_all" title="Repeat_all">repeat</span>
+                    <span class="material-icons buttonBG" id="Shuffle" title="Shuffle">shuffle</span>
+                    <span class="material-icons buttonBG" id="repeat_one" title="repeat_one" >repeat_one</span>
                     <input type="range" min="0" max="100" value="70" class="Slider" id="VolumeSlider">
-                    <input class="vol_adjust" id="vol_p" style="width:30px;left:67%;font-weight:900" type="button" value=" ＋ " />
-                    <input class="vol_adjust" id="vol_m" style="width:30px;left:75%;font-weight:900" type="button" value=" － " />
-                    <input class="vol_adjust" id="vol_info" style="width:30px;left:84%;text-align:center;font-weight:700;color:rgba(255, 255, 255, 0.60)" type="text" value="70" max="100" min="0" readonly="readonly" />
+                    <input class="vol_adjust" id="vol_p" style="width:30px;left:69%;font-weight:900" type="button" value=" ＋ " />
+                    <input class="vol_adjust" id="vol_m" style="width:30px;left:77%;font-weight:900" type="button" value=" － " />
+                    <input class="vol_adjust" id="vol_info" style="width:30px;left:85%;text-align:center;font-weight:700;color:rgba(255, 255, 255, 0.60)" type="text" value="70" max="100" min="0" readonly="readonly" />
                 </div>
-                <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,110px);transition-duration:1s">
+                <div style="position:absolute;top:50%;left:50%;transform:translate(-51.5%,100px);transition-duration:1s">
                     <select id="musicMenu">
-                        <option value="MUSIC/Zedd,%20Katy%20Perry%20-%20365.mp3">Zedd & KatyPerry-365</option>
-                        <option value="MUSIC/Anne-Marie - Then.mp3">Anne-Marie - Then</option>
-                        <option value="MUSIC/Alan Walker, Sabrina Carpenter & Farruko - On My Way.mp3">Alan Walker, Sabrina Carpenter & Farruko - On My Way</option>
-                        <option value="MUSIC/蔡依林-玫瑰少年.mp3">蔡依林 - 玫瑰少年</option>
-                        <option value="MUSIC/Shawn%20Mendes&Camila%20Cabello%20-%20Senorita.mp3">Shawn Mendes & Camila Cabello - Senorita</option>
-                        <option value="MUSIC/Beyonce%20-%20Run%20The%20World.mp3">Beyonce - Run The World</option>
-                        <option value="MUSIC/Unknown%20Brain%20Feat.%20Bri%20Tolani-Why%20Do%20I.mp3">Unknown Brain Feat. Bri Tolani - Why Do I</option>
-                        <option value="MUSIC/Bellie%20Eilish-Bad%20Guy.mp3">Bellie Eilish - Bad Guy</option>
-                        <option value="MUSIC/AvengersThemeRemix.mp3">AvengersThemeRemix</option>
+                        
                     </select>
                 </div>
-                <div id="music_list" class="music_list">
-
+                <div id="music_list" class="music_list" >
+                    <div id="song_source" style="border-bottom:1px white dashed">
+                        <div title="MUSIC/Zedd,%20Katy%20Perry%20-%20365.mp3">Zedd & KatyPerry-365</div>
+                        <div title="MUSIC/Anne-Marie - Then.mp3">Anne-Marie - Then</div>
+                        <div title="MUSIC/Alan Walker, Sabrina Carpenter & Farruko - On My Way.mp3">Alan Walker, Sabrina Carpenter & Farruko - On My Way</div>
+                        <div title="MUSIC/蔡依林-玫瑰少年.mp3">蔡依林 - 玫瑰少年</div>
+                        <div title="MUSIC/Shawn%20Mendes&Camila%20Cabello%20-%20Senorita.mp3">Shawn Mendes & Camila Cabello - Senorita</div>
+                        <div title="MUSIC/Beyonce%20-%20Run%20The%20World.mp3">Beyonce - Run The World</div>
+                        <div title="MUSIC/Unknown%20Brain%20Feat.%20Bri%20Tolani-Why%20Do%20I.mp3">Unknown Brain Feat. Bri Tolani - Why Do I</div>
+                        <div title="MUSIC/Bellie%20Eilish-Bad%20Guy.mp3">Bellie Eilish - Bad Guy</div>
+                        <div title="MUSIC/AvengersThemeRemix.mp3">AvengersThemeRemix</div>
+                        <div title="MUSIC/Taylor%20Swift-ME!.mp3">Taylor Swift - ME!</div>
+                        <div title="MUSIC/Anne%20Marie-Alarm.mp3">Anne Marie - Alarm</div>
+                        <div title="MUSIC/%e8%94%a1%e4%be%9d%e6%9e%97-%e7%b4%85%e8%a1%a3%e5%a5%b3%e5%ad%a9.mp3">蔡依林 - 紅衣女孩</div>
+                        <div title="MUSIC/%e8%94%a1%e4%be%9d%e6%9e%97-%e7%94%9c%e7%a7%98%e5%af%86.mp3">蔡依林-甜秘密</div>
+                    </div>
+                    <div id="song_target"></div>
                 </div>
             </div>
             
@@ -293,6 +338,15 @@
         var player = document.getElementById("player");
         var list = document.getElementById("list");
         var music_list = document.getElementById("music_list");
+        var Repeat_all = document.getElementById("Repeat_all");
+        var Shuffle = document.getElementById("Shuffle");
+        var timebar = document.getElementById("timebar");
+        var nowtime = document.getElementById("nowtime");
+        var Play = document.getElementById("Play");
+        var song_source = document.getElementById("song_source");
+        var song_target = document.getElementById("song_target");
+        
+        
 
         //瀏覽器偵測
         function browserTest() {
@@ -332,6 +386,9 @@
                 case "Previous":
                     changeSong(false,obj);
                     break;
+                case "list":
+                    changeCSS();
+                    break;
             }
         } 
         //在點擊按鈕時，上層的節點也會被觸發事件，故由button父節點來判斷哪個按鈕被觸發，第二排button
@@ -346,9 +403,15 @@
                     break;
                 case "repeat_one":
                     MusicRepeatOne(obj);
+                    checkButtonXOR(obj)
                     break;
                 case "Repeat_all":
-                    MusicRepeatAll();
+                    MusicRepeatAll(obj);
+                    checkButtonXOR(obj)
+                    break;
+                case "Shuffle":
+                    randomMusic(obj);
+                    checkButtonXOR(obj)
                     break;
                 case "vol_p":
                     changeVolume(2);
@@ -356,10 +419,13 @@
                 case "vol_m":
                     changeVolume(3);
                     break;
+                
             }
 
         }
-        //將時間從秒數轉換為幾分幾秒的格式        function getTimeFormat(timeSec) {
+        //從song_source中讀歌曲到歌本中        for (i = 0; i < song_source.children.length; i++) {            var get_option = document.createElement("option");            var Source_node = song_source.children[i];            get_option.value =Source_node .title;            get_option.innerText = Source_node.innerText;            musicMenu.appendChild(get_option);            Source_node.draggable = "true";            Source_node.id = "song" + (i + 1);        }        nowSong.src = musicMenu.options[0].value; //重load一次歌曲        audio.load();        //從song_source中拉歌曲        function drag(evt) {            evt.dataTransfer.setData("text", evt.target.id);            console.log(evt.target.id);        }        //將原本在song_source中的歌移除並加到song_target        function drop(evt) {            evt.preventDefault();
+            var data = evt.dataTransfer.getData("text");
+            evt.target.appendChild(document.getElementById(data));        }        //將歌曲放置到song_target中，若沒有此function將無法放進去        function allowDrop(evt) {            evt.preventDefault();        }        //將時間從秒數轉換為幾分幾秒的格式        function getTimeFormat(timeSec) {
             minute = Math.floor(timeSec / 60);
             second = timeSec % 60;
             minute = minute < 10 ? "0" + minute : minute;
@@ -370,30 +436,55 @@
         function getDuration() { 
             songDuration = Math.round(audio.duration);
             songCurrent = Math.round(audio.currentTime);
-            //while (songDuration == NaN) {
-                    
-            //    duration.innerText = getTimeFormat(songCurrent) + " / 00:00";
-            //}
+            //顯示目前播放時間文字
             duration.innerText = getTimeFormat(songCurrent) + " / " + getTimeFormat(songDuration);
+
+            nowtime.style.width = (audio.currentTime / audio.duration * 100) + "%";
             if (songDuration == songCurrent) {
-                changeSong(true,Previous.nextElementSibling.nextElementSibling);
+                if (repeat_one.title == "not_repeat_one") {
+                    changeMusicMenu();                    getDuration();
+                } else if (Shuffle.title == "Not_Shuffle") {
+                    index = Math.floor(Math.random() * musicMenu.options.length);
+                    console.log(index);
+                    musicMenu.options[index].selected = true;
+                    nowSong.src = musicMenu.options[index].value;
+                    PlayMusic(Previous.nextElementSibling.nextElementSibling);
+                    getDuration();
+                } else if (Repeat_all.title == "Repeat_all" && musicMenu.selectedIndex == musicMenu.options.length - 1) {
+                    StopMusic(Previous.nextElementSibling.nextElementSibling.nextElementSibling);
+                }
+                else {
+                    changeSong(true, Previous.nextElementSibling.nextElementSibling);
+                }
+            }else {
+                 setTimeout(getDuration, 10);
             }
-            setTimeout(getDuration, 1000);
+        }
+        //時間進度bar
+        function setTimebar(evt) {
+            console.log(evt);
+            audio.currentTime = (evt.offsetX / timebar.clientWidth) * audio.duration;
         }
         //下拉式選單中直接換歌，直接選歌後會直接播放歌曲
         function changeMusicMenu() {
-            index = musicMenu.selectedIndex;
-            nowSong.src = musicMenu.options[index].value;
-            musicMenu.options[index].selected = true;            audio.currentTime = 0;
-            if (audio.paused == false) {
-                audio.autoplay = "autoplay";
-                PlayMusic(Next.previousElementSibling.previousElementSibling.previousElementSibling);
-            } 
+            if (Shuffle.title == "Not_Shuffle") {
+                index = Math.floor(Math.random() * musicMenu.options.length);
+                console.log(index);
+                musicMenu.options[index].selected = true;
+                nowSong.src = musicMenu.options[index].value;
+                
+            } else {
+                index = musicMenu.selectedIndex;
+                nowSong.src = musicMenu.options[index].value;
+                musicMenu.options[index].selected = true;                audio.currentTime = 0;
+            }
+            audio.load();
+            PlayMusic(Play);
+            checkPlayStatement();
             ChangeMarquee("play");
         } 
         //播放音樂並改圖示為暫停、播放音樂時啟動資訊看板邊框特效，預設全曲循環
         function PlayMusic(obj) {
-            audio.load();
             audio.play();
             obj.id = "Pause";
             obj.innerText = "pause";
@@ -496,30 +587,73 @@
         }
         //單曲循環
         function MusicRepeatOne(obj) {
-            if (obj.title=="repeat_one") {
-                audio.loop = "loop";
+            if (obj.title == "repeat_one") {
                 obj.title = "not_repeat_one";
                 repeat_one.style.boxShadow = "0px 0px 15px 3px rgba(102, 217, 255, 0.68)";
-            } else  {
-                audio.loop = false;
+            } else {
                 obj.title = "repeat_one";
                 repeat_one.style.boxShadow = "0 0 13px rgba(255, 255, 255,0.8)";
-                if (audio.paused == false) {
-                    audio.autoplay = "autoplay";
-                    PlayMusic(Next.previousElementSibling.previousElementSibling.previousElementSibling);
-                }
+                checkPlayStatement();
             }
         }
         //全曲循環
-        function MusicRepeatAll() {
+        function MusicRepeatAll(obj) {
             lastMusic_index = (musicMenu.options.length) - 1;
             nowMusic_index = musicMenu.selectedIndex;
-            if (lastMusic_index == nowMusic_index) {
+            if (obj.title == "Repeat_all") {
+                obj.title = "Not_Repeat_all";
+                Repeat_all.style.boxShadow = "0px 0px 15px 3px rgba(102, 217, 255, 0.68)";
+
+                if (lastMusic_index == nowMusic_index) {
                 musicMenu.options[0].selected = true;
                 changeMusicMenu();
+                } else {
+                checkPlayStatement();
+                }
             } else {
-                changeSong(true);
+                obj.title = "Repeat_all";
+                Repeat_all.style.boxShadow = "0 0 13px rgba(255, 255, 255,0.8)";
+                audio.addEventListener("ended", function () { PauseMusic(Previous.nextElementSibling.nextElementSibling);audio.autoplay = ""; });
             }
+        }
+        //隨機播放
+        function randomMusic(obj) {
+            if (obj.title == "Shuffle") {
+                obj.title = "Not_Shuffle";
+                Shuffle.style.boxShadow = "0px 0px 15px 3px rgba(102, 217, 255, 0.68)";
+            } else {
+                obj.title = "Shuffle";
+                Shuffle.style.boxShadow = "0 0 13px rgba(255, 255, 255,0.8)";
+                checkPlayStatement();
+            }
+        }
+        //隨機播放&全曲循環&單曲循環按紐互斥判斷
+        function checkButtonXOR(obj) {
+            if (obj.title == "Not_Repeat_all") {
+                repeat_one.title = "not_repeat_one";
+                Shuffle.title = "Not_Shuffle";
+                MusicRepeatOne(repeat_one);
+                randomMusic(Shuffle);
+            } else if (obj.title == "not_repeat_one") {
+                Repeat_all.title = "Not_Repeat_all";
+                Shuffle.title = "Not_Shuffle";
+                MusicRepeatAll(Repeat_all);
+                randomMusic(Shuffle);
+            } else {
+                repeat_one.title = "not_repeat_one";
+                Repeat_all.title = "Not_Repeat_all";
+                MusicRepeatOne(repeat_one);
+                MusicRepeatAll(Repeat_all);
+            }
+           
+            
+        }
+        //判斷若為暫停狀態，則不播歌，播放狀態即播歌
+        function checkPlayStatement() {
+             if (audio.paused == false) {
+                 audio.autoplay = "autoplay";
+                 PlayMusic(Previous.nextElementSibling.nextElementSibling);
+             }
         }
         //音量設定
         function changeVolume(flag) {
@@ -530,7 +664,7 @@
             }
             vol_info.value = VolumeSlider.value;
             vol_info.className += " slider_change";
-            setTimeout(slider_Change_control, 1000);
+            setTimeout(slider_Change_control, 1000);         //變更音量動畫
             audio.volume = vol_info.value / 100;
         }
         function slider_Change_control() {
@@ -538,34 +672,40 @@
         }
         //清單展開效果
         function changeCSS() {
-            if (list.value=="change_LARGE") {
-                player.className += " player_change";
-                info_area.nextElementSibling.className += "button_change";
-                controlpanel_two.nextElementSibling.style.top = "185%";
+            if (list.value == "change_LARGE") {
+                player.classList.add("player_change");
+                info_area.nextElementSibling.classList.add("button_change");
+                controlpanel_two.nextElementSibling.style.top = "180%";
                 list.value = "change_SMALL";
-                music_list.style.opacity = "1";
                 music_list.style.border = "solid 5px rgba(255, 255, 255,0.8)";
-                music_list.className = "music_list music_list_bg ";
+
+                setTimeout(function () {
+                    music_list.classList.add("music_list_bg");
+                    music_list.style.display = "block";
+                 
+                }, 1000);
+                music_list.style.opacity = "1";
             } else {
                 list.value = "change_LARGE";
-                player.className = "player";
-                info_area.nextElementSibling.className = "";
+                player.classList.remove("player_change");
+                info_area.nextElementSibling.classList.remove("button_change");
                 controlpanel_two.nextElementSibling.style.top = "50%";
+                music_list.style.display = "none";
+                music_list.style.border = "";
                 music_list.style.opacity = "0";
-                music_list.style.border= "";
-                music_list.className = "music_list";
+                setTimeout(function () { music_list.classList.remove ( "music_list_bg") }, 1000);
             }
         }
-
        
         //事件監聽器
         controlpanel_one.addEventListener("click", objEvent);
         controlpanel_two.addEventListener("click", objEvent2);
         musicMenu.addEventListener("change", changeMusicMenu);
-
-        audio.addEventListener("ended", MusicRepeatAll);
         VolumeSlider.addEventListener(browserTest(), function () { changeVolume(1); });
-        list.addEventListener("click", function () { changeCSS(); }); 
+        timebar.addEventListener("click", setTimebar);
+        song_source.addEventListener("dragstart", drag);
+        song_target.addEventListener("drop", drop);
+        song_target.addEventListener("dragover", allowDrop);
     </script>
 </body>
 </html>
