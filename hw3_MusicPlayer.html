@@ -43,8 +43,8 @@
             transition-duration:1s;
         }
         .music_list_bg {
-            background: linear-gradient(209deg, rgba(227,48,29,0.5), rgba(238,141,61,0.5), rgba(236,240,84,0.5), rgba(84,191,240,0.5), rgba(143,84,240,0.5), rgba(242,106,200,0.5), rgba(238,48,105,0.5));
-            animation:music_list_bg1 alternate infinite 3s;
+            background: linear-gradient(209deg, rgba(227,48,29,0.5),  rgba(236,240,84,0.5), rgba(84,191,240,0.5), rgba(143,84,240,0.5), rgba(242,106,200,0.5), rgba(238,48,105,0.5));
+            animation:music_list_bg1 alternate infinite 2.5s;
             background-size:300% 300%;
             transition:1.5s;
             opacity:1;
@@ -95,7 +95,6 @@
             top:50%;
             transform:translate(-51%,38%);
             transition-duration:0.5s;
-            /*transition-delay:3s;*/
             z-index: -1;
             opacity:0;
         }
@@ -141,6 +140,9 @@
             border:none;
             box-shadow:0px 0px 12px 8px rgba(125, 125, 125, 0.4) ;
             font-family:微軟正黑體;
+            -webkit-appearance:none;
+            padding-left:5pt;
+            
         }
         #musicMenu:hover {
             box-shadow:0px 0px 5px 5px rgba(102, 217, 255, 0.68) ;
@@ -214,6 +216,10 @@
             font-family:Calibri;
             font-size:0.9rem;
             color:rgba(255, 255, 255, 1);
+            -webkit-appearance:none;
+        }
+        #vol_p,#vol_m {
+            cursor:pointer;
         }
         .duration {
             position:absolute;
@@ -224,16 +230,21 @@
             letter-spacing:1pt;
         }
         #timebar {
-            background-color:white;
+            background-color:rgba(255, 255, 255, 0.7);
             height:10px;
             width:70%;
             position:absolute;
             top:8%;
             left:0;
             border-radius:3px;
+            box-shadow: 0 0 17px rgb(255, 255, 255);
+            -webkit-appearance:none;
+        }
+        #timebar:hover {
+            box-shadow:0px 0px 5px 5px rgba(102, 217, 255, 0.68) ;
         }
         #nowtime {
-            background-color:rgb(246, 245, 185);
+            background-color:white;
             height:10px;
             border-radius:3px;
         }
@@ -247,19 +258,24 @@
         float:left;
         font-family:微軟正黑體;
         color:white;
-        font-size:10pt;
+        font-size:11pt;
         font-weight:800;
         letter-spacing:0.5pt;
         padding-left:2pt;
         }
+        /*滾動條樣式*/
+        ::-webkit-scrollbar{width:13px;border-radius:8px;}
+        ::-webkit-scrollbar:hover {box-shadow: 0 0 10px rgba(255, 255, 255,0.5);}
+        ::-webkit-scrollbar-track{background-color:rgba(255, 255, 255, 0.7);border-radius:8px;}
+        ::-webkit-scrollbar-thumb{background-color:rgba(102, 217, 255, 0.48);border-radius:8px;}
+        
     </style>
 </head>
 <body>
     <div>
 
-        <audio id="audio" controls="controls">
+        <audio id="audio" >
             <source id="nowSong" type="audio/mp3" />
-            <!--src="MUSIC/Zedd,%20Katy%20Perry%20-%20365.mp3"-->
         </audio>
 
         <div id="player" class="player">
@@ -277,7 +293,7 @@
                     <span class="material-icons buttonBG" id="Stop" >stop</span>
                     <span class="material-icons buttonBG" id="Fast-Forward" >fast_forward</span>
                     <span class="material-icons buttonBG" id="Next" >skip_next</span>
-                    <span class="material-icons buttonBG" id="list"  title="change_LARGE">list</span>
+                    <span class="material-icons buttonBG" id="list"  title="EditMySong">list</span>
                 </div>
                 <div id="duration" class="duration">00:00 / 00:00</div>
                 <div id="controlpanel_two"  style="height:100px;">
@@ -286,9 +302,9 @@
                     <span class="material-icons buttonBG" id="Shuffle" title="Shuffle">shuffle</span>
                     <span class="material-icons buttonBG" id="repeat_one" title="repeat_one" >repeat_one</span>
                     <input type="range" min="0" max="100" value="70" class="Slider" id="VolumeSlider">
-                    <input class="vol_adjust" id="vol_p" style="width:30px;left:69%;font-weight:900" type="button" value=" ＋ " />
-                    <input class="vol_adjust" id="vol_m" style="width:30px;left:77%;font-weight:900" type="button" value=" － " />
-                    <input class="vol_adjust" id="vol_info" style="width:30px;left:85%;text-align:center;font-weight:700;color:rgba(255, 255, 255, 0.60)" type="text" value="70" max="100" min="0" readonly="readonly" />
+                    <input class="vol_adjust" id="vol_p" style="width:30px;left:69%;font-weight:800" type="button" value="＋" />
+                    <input class="vol_adjust" id="vol_m" style="width:30px;left:77%;font-weight:800" type="button" value="－" />
+                    <input class="vol_adjust" id="vol_info" style="width:30px;left:85%;text-align:center;font-weight:700;color:rgba(255, 255, 255, 0.60);-webkit-appearance:none;height:18.5px;" type="text" value="70" max="100" min="0" readonly="readonly" />
                 </div>
                 <div style="position:absolute;top:50%;left:50%;transform:translate(-51.5%,100px);transition-duration:1s">
                     <select id="musicMenu">
@@ -345,8 +361,6 @@
         var Play = document.getElementById("Play");
         var song_source = document.getElementById("song_source");
         var song_target = document.getElementById("song_target");
-        
-        
 
         //瀏覽器偵測
         function browserTest() {
@@ -423,7 +437,7 @@
             }
 
         }
-        //從song_source中讀歌曲到歌本中        for (i = 0; i < song_source.children.length; i++) {            var get_option = document.createElement("option");            var Source_node = song_source.children[i];            get_option.value =Source_node .title;            get_option.innerText = Source_node.innerText;            musicMenu.appendChild(get_option);            Source_node.draggable = "true";            Source_node.id = "song" + (i + 1);        }        nowSong.src = musicMenu.options[0].value; //重load一次歌曲        audio.load();        //從song_source中拉歌曲        function drag(evt) {            evt.dataTransfer.setData("text", evt.target.id);            console.log(evt.target.id);        }        //將原本在song_source中的歌移除並加到song_target        function drop(evt) {            evt.preventDefault();
+        //從song_source中讀歌曲到歌本中(加入事件監聽器，若song_target有子節點(onchange)，則播放song_target中歌曲(再讀一次song_target中的歌到option底下))        for (i = 0; i < song_source.children.length; i++) {            var get_option = document.createElement("option");               var Source_node = song_source.children[i];                       get_option.value =Source_node .title;            get_option.innerText = Source_node.innerText;            musicMenu.appendChild(get_option);          //在musicMenu子節點創建option元素            Source_node.draggable = "true";             //將歌本中每個元素都設為可拖曳的狀態            Source_node.id = "song" + (i + 1);          //因拖曳時每個物件需有ID，故編列流水號        }        nowSong.src = musicMenu.options[0].value; //重load一次歌曲        audio.load();        //從song_source中拉歌曲        function drag(evt) {            evt.dataTransfer.setData("text", evt.target.id);            console.log(evt.target.id);        }        //將原本在song_source中的歌移除並加到song_target        function drop(evt) {            evt.preventDefault();
             var data = evt.dataTransfer.getData("text");
             evt.target.appendChild(document.getElementById(data));        }        //將歌曲放置到song_target中，若沒有此function將無法放進去        function allowDrop(evt) {            evt.preventDefault();        }        //將時間從秒數轉換為幾分幾秒的格式        function getTimeFormat(timeSec) {
             minute = Math.floor(timeSec / 60);
@@ -438,29 +452,22 @@
             songCurrent = Math.round(audio.currentTime);
             //顯示目前播放時間文字
             duration.innerText = getTimeFormat(songCurrent) + " / " + getTimeFormat(songDuration);
-
+            //更新時間進度條
             nowtime.style.width = (audio.currentTime / audio.duration * 100) + "%";
             if (songDuration == songCurrent) {
                 if (repeat_one.title == "not_repeat_one") {
-                    changeMusicMenu();                    getDuration();
-                } else if (Shuffle.title == "Not_Shuffle") {
-                    index = Math.floor(Math.random() * musicMenu.options.length);
-                    console.log(index);
-                    musicMenu.options[index].selected = true;
-                    nowSong.src = musicMenu.options[index].value;
-                    PlayMusic(Previous.nextElementSibling.nextElementSibling);
-                    getDuration();
+                    changeMusicMenu();                } else if (Shuffle.title == "Not_Shuffle") {
+                    changeMusicMenu();
                 } else if (Repeat_all.title == "Repeat_all" && musicMenu.selectedIndex == musicMenu.options.length - 1) {
                     StopMusic(Previous.nextElementSibling.nextElementSibling.nextElementSibling);
-                }
-                else {
+                } else {
                     changeSong(true, Previous.nextElementSibling.nextElementSibling);
                 }
             }else {
                  setTimeout(getDuration, 10);
             }
         }
-        //時間進度bar
+        //以點擊方式調整時間進度bar
         function setTimebar(evt) {
             console.log(evt);
             audio.currentTime = (evt.offsetX / timebar.clientWidth) * audio.duration;
@@ -557,20 +564,24 @@
                 marquee_now_song.innerText = "目前播放：" + musicMenu.options[index].innerText;
             } else if (x == "pause") {
                 marquee_now_song.innerText = "-音樂暫停-";
+                checkNowStatement();
             } else if (x == "stop") {
                 marquee_now_song.innerText = "-音樂停止-";
             } else if (x == "fast") {
                 marquee_now_song.innerText = "-音樂快轉-";
-                setTimeout(function () {marquee_now_song.innerText = "-請點擊播放-"; }, 2000);
-                if (controlpanel_one.firstElementChild.nextElementSibling.nextElementSibling.id == "Pause") {
-                    checkNowStatement();
-                }
+                checkNowStatement();
             } else if (x == "rewind") {
                 marquee_now_song.innerText = "-音樂倒轉-";
-                setTimeout(function () {marquee_now_song.innerText = "-請點擊播放-"; }, 2000);
-                if (controlpanel_one.firstElementChild.nextElementSibling.nextElementSibling.id == "Pause") {
-                    checkNowStatement();
-                }
+                checkNowStatement();
+            } else if (x == "shuffle") {
+                marquee_now_song.innerText = "-隨機播放-";
+                checkNowStatement();
+            }else if (x == "repeat_one") {
+                marquee_now_song.innerText = "-單曲循環-";
+                checkNowStatement();
+            }else if (x == "Repeat_all") {
+                marquee_now_song.innerText = "-全曲循環-";
+                checkNowStatement();
             }
         }
         //判斷目前是否播放顯示對應跑馬燈
@@ -580,16 +591,15 @@
                     ChangeMarquee("play");
                     }, 2000);
                 } else {
-                    setTimeout(function () {
-                    ChangeMarquee("pause");
-                    }, 2000);
+                    setTimeout(function () { marquee_now_song.innerText = "-請點擊播放-"; }, 2000);
                 }
         }
         //單曲循環
         function MusicRepeatOne(obj) {
             if (obj.title == "repeat_one") {
                 obj.title = "not_repeat_one";
-                repeat_one.style.boxShadow = "0px 0px 15px 3px rgba(102, 217, 255, 0.68)";
+                repeat_one.style.boxShadow = "0px 0px 15px 5px rgba(102, 217, 255, 0.68)";
+                ChangeMarquee("repeat_one");
             } else {
                 obj.title = "repeat_one";
                 repeat_one.style.boxShadow = "0 0 13px rgba(255, 255, 255,0.8)";
@@ -602,8 +612,8 @@
             nowMusic_index = musicMenu.selectedIndex;
             if (obj.title == "Repeat_all") {
                 obj.title = "Not_Repeat_all";
-                Repeat_all.style.boxShadow = "0px 0px 15px 3px rgba(102, 217, 255, 0.68)";
-
+                Repeat_all.style.boxShadow = "0px 0px 15px 5px rgba(102, 217, 255, 0.68)";
+                ChangeMarquee("Repeat_all");
                 if (lastMusic_index == nowMusic_index) {
                 musicMenu.options[0].selected = true;
                 changeMusicMenu();
@@ -620,7 +630,8 @@
         function randomMusic(obj) {
             if (obj.title == "Shuffle") {
                 obj.title = "Not_Shuffle";
-                Shuffle.style.boxShadow = "0px 0px 15px 3px rgba(102, 217, 255, 0.68)";
+                Shuffle.style.boxShadow = "0px 0px 15px 5px rgba(102, 217, 255, 0.68)";
+                ChangeMarquee("shuffle");
             } else {
                 obj.title = "Shuffle";
                 Shuffle.style.boxShadow = "0 0 13px rgba(255, 255, 255,0.8)";
@@ -672,25 +683,23 @@
         }
         //清單展開效果
         function changeCSS() {
-            if (list.value == "change_LARGE") {
+            if (list.title == "EditMySong") {
                 player.classList.add("player_change");
                 info_area.nextElementSibling.classList.add("button_change");
                 controlpanel_two.nextElementSibling.style.top = "180%";
-                list.value = "change_SMALL";
+                list.title = "Close_EditMySong";
                 music_list.style.border = "solid 5px rgba(255, 255, 255,0.8)";
-
+               
                 setTimeout(function () {
                     music_list.classList.add("music_list_bg");
-                    music_list.style.display = "block";
-                 
+                    music_list.style.opacity = "1";
                 }, 1000);
-                music_list.style.opacity = "1";
+                
             } else {
-                list.value = "change_LARGE";
+                list.title = "EditMySong";
                 player.classList.remove("player_change");
                 info_area.nextElementSibling.classList.remove("button_change");
                 controlpanel_two.nextElementSibling.style.top = "50%";
-                music_list.style.display = "none";
                 music_list.style.border = "";
                 music_list.style.opacity = "0";
                 setTimeout(function () { music_list.classList.remove ( "music_list_bg") }, 1000);
