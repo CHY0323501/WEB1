@@ -1,0 +1,126 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+@*import semantic_UI*@
+<script src="~/Semantic-UI-CSS-master/Semantic-UI-CSS-master/semantic.min.js"></script>
+<link href="~/Semantic-UI-CSS-master/Semantic-UI-CSS-master/semantic.min.css" rel="stylesheet" />
+
+<br>
+<br>
+<br>
+<h2>Login</h2>
+<button id="FB_login" class="ui facebook button" >
+    <i class="facebook square icon"></i>
+    登入
+</button>
+<button id="FB_logout" class="ui facebook button">
+    <i class="facebook square icon"></i>
+    登出
+</button>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+@*<fb:login-button id="fb_btn" scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+    <div id="logout_btn" style="border:1px solid" onclick="fblogout()">登出按我</div>*@
+    <p>目前狀態：<span id="FB_STATUS_1"></span></p>
+
+<script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '679500922527245', // 填入 FB APP ID
+                cookie: true,
+                xfbml: true,
+                version: 'v3.2'
+            });
+
+            FB.getLoginStatus(function (response) {
+                statusChangeCallback(response);
+                console.log(response);
+            });
+        };
+
+
+
+        // 處理各種登入身份
+        function statusChangeCallback(response) {
+            var target = document.getElementById("FB_STATUS_1"),
+                html = "";
+
+            // 登入 FB 且已加入會員
+            if (response.status === 'connected') {
+                html = "已登入 FB，並加入 JoinFun 應用程式<br/>";
+
+                FB.api('/me?fields=id,name,email', function (response) {
+                    console.log(response);
+                    html += "會員暱稱：" + response.name + "<br/>";
+                    html += "會員 email：" + response.email;
+                    target.innerHTML = html;
+                });
+            }
+
+            //登入 FB, 未偵測到加入會員
+            else if (response.status === "not_authorized") {
+                target.innerHTML = "已登入 FB，但未加入 JoinFun 應用程式";
+            }
+
+            // 未登入 FB
+            else {
+                target.innerHTML = "未登入 FB";
+            }
+        }
+
+        function checkLoginState() {
+            FB.getLoginStatus(function (response) {
+                statusChangeCallback(response);
+                console.log(response);
+            });
+        }
+        function fblogout() {     // facebook 登出
+            FB.getLoginStatus(
+                function (response) {
+                    if (response.status === 'connected') {
+                        FB.logout(function (response) {    //使用者已成功登出
+                            alert("成功登出。");
+                            localStorage.clear();
+                            //再 refresh 一次，讓登入登出按鈕能正常顯示
+                            statusChangeCallback(response);
+                            location.replace("http://localhost:56180/Home/Index");
+                        });
+                    } else if (response.status === 'not_authorized') {
+                        // 使用者已登入 Facebook，但是在你的app是無效的
+                        FB.logout(function (response) {     // 使用者已登出
+                            alert("請重新登入！");
+                            statusChangeCallback(response);
+                        });
+                    } else {    // 使用者沒有登入 Facebook
+                        alert("請重新登入！");
+                        statusChangeCallback(response);
+                    }
+                });
+        }
+        // 載入 FB SDK
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://connect.facebook.net/zh_TW/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    $("#FB_login").click(function() {
+// 點擊登入按鈕
+FB.login(function(response) {
+statusChangeCallback(response);
+}, {
+scope: 'public_profile,email'
+});
+    });
+    //點擊登出按鈕
+    $("#FB_logout").click(function() {
+FB.logout(function(response) {
+statusChangeCallback(response);
+});
+});
+    </script>
+

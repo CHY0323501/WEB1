@@ -1,0 +1,485 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2C6BF369-0705-4A74-ACCD-F757E64B4502}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>web1</RootNamespace>
+    <AssemblyName>web1</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="123.html" />
+    <Content Include="hover效果\Hover-master\Hover-master\.gitignore" />
+    <Content Include="hover效果\Hover-master\Hover-master\css\demo-page.css" />
+    <Content Include="hover效果\Hover-master\Hover-master\css\hover-min.css" />
+    <Content Include="hover效果\Hover-master\Hover-master\css\hover.css" />
+    <Content Include="hover效果\Hover-master\Hover-master\Gruntfile.js" />
+    <Content Include="hover效果\Hover-master\Hover-master\hover.jpg" />
+    <Content Include="hover效果\Hover-master\Hover-master\index.html" />
+    <Content Include="hover效果\Hover-master\Hover-master\license.txt" />
+    <Content Include="hover效果\Hover-master\Hover-master\logo-transparent.png" />
+    <Content Include="hover效果\Hover-master\Hover-master\modern-slide-in.png" />
+    <Content Include="hover效果\Hover-master\Hover-master\photo-stack.png" />
+    <Content Include="hover效果\Hover-master\Hover-master\sequence-logo.png" />
+    <Content Include="hover效果\Hover-master\Hover-master\two-up.png" />
+    <Content Include="MUSIC\Barbasauce.mp3" />
+    <Content Include="MUSIC\FastLife.mp3" />
+    <Content Include="MUSIC\GoodNight.mp3" />
+    <Content Include="MUSIC\LightsGoLow.mp3" />
+    <Content Include="photo\bottom.jpg" />
+    <Content Include="photo\left.jpg" />
+    <Content Include="photo\right.jpg" />
+    <Content Include="photo\top.jpg" />
+    <Content Include="position.html" />
+    <Content Include="MusicCSS.css" />
+    <Content Include="MusicPlayer.html" />
+    <Content Include="musicplayer\Sciencefiction.png" />
+    <Content Include="playerJS.js" />
+    <Content Include="images\friends.jpg" />
+    <Content Include="music-player_icon\118357-music-player-options\font\flaticon.css" />
+    <Content Include="music-player_icon\118357-music-player-options\font\flaticon.html" />
+    <Content Include="music-player_icon\118357-music-player-options\font\Flaticon.svg" />
+    <Content Include="music-player_icon\118357-music-player-options\license\license.html" />
+    <Content Include="music-player_icon\118357-music-player-options\png\equalizer.png" />
+    <Content Include="music-player_icon\118357-music-player-options\png\fast-forward.png" />
+    <Content Include="music-player_icon\118357-music-player-options\png\favorite.png" />
+    <Content Include="music-player_icon\118357-music-player-options\png\headphones.png" />
+    <Content Include="music-player_icon\118357-music-player-options\png\menu.png" />
+    <Content Include="music-player_icon\118357-music-player-options\png\musical-note.png" />
+    <Content Include="music-player_icon\118357-music-player-options\png\mute.png" />
+    <Content Include="music-player_icon\118357-music-player-options\png\next.png" />
+    <Content Include="music-player_icon\118357-music-player-options\png\pause.png" />
+    <Content Include="music-player_icon\118357-music-player-options\png\play-button.png" />
+    <Content Include="music-player_icon\118357-music-player-options\png\previous.png" />
+    <Content Include="music-player_icon\118357-music-player-options\png\repeat.png" />
+    <Content Include="music-player_icon\118357-music-player-options\png\rewind.png" />
+    <Content Include="music-player_icon\118357-music-player-options\png\shuffle.png" />
+    <Content Include="music-player_icon\118357-music-player-options\png\stop.png" />
+    <Content Include="music-player_icon\118357-music-player-options\png\volume.png" />
+    <Content Include="music-player_icon\118357-music-player-options\svg\equalizer.svg" />
+    <Content Include="music-player_icon\118357-music-player-options\svg\fast-forward.svg" />
+    <Content Include="music-player_icon\118357-music-player-options\svg\favorite.svg" />
+    <Content Include="music-player_icon\118357-music-player-options\svg\headphones.svg" />
+    <Content Include="music-player_icon\118357-music-player-options\svg\menu.svg" />
+    <Content Include="music-player_icon\118357-music-player-options\svg\musical-note.svg" />
+    <Content Include="music-player_icon\118357-music-player-options\svg\mute.svg" />
+    <Content Include="music-player_icon\118357-music-player-options\svg\next.svg" />
+    <Content Include="music-player_icon\118357-music-player-options\svg\pause.svg" />
+    <Content Include="music-player_icon\118357-music-player-options\svg\play-button.svg" />
+    <Content Include="music-player_icon\118357-music-player-options\svg\previous.svg" />
+    <Content Include="music-player_icon\118357-music-player-options\svg\repeat.svg" />
+    <Content Include="music-player_icon\118357-music-player-options\svg\rewind.svg" />
+    <Content Include="music-player_icon\118357-music-player-options\svg\shuffle.svg" />
+    <Content Include="music-player_icon\118357-music-player-options\svg\stop.svg" />
+    <Content Include="music-player_icon\118357-music-player-options\svg\volume.svg" />
+    <Content Include="music-player_icon\baseline_loop_black_48dp.png" />
+    <Content Include="music-player_icon\baseline_repeat_black_48dp.png" />
+    <Content Include="music-player_icon\baseline_repeat_one_black_48dp.png" />
+    <Content Include="music-player_icon\baseline_volume_down_black_48dp.png" />
+    <Content Include="music-player_icon\baseline_volume_mute_black_48dp.png" />
+    <Content Include="photo1.jpg" />
+    <Content Include="01practice_adjust_Image.html" />
+    <Content Include="ActivityAPI.html" />
+    <Content Include="json\activity.json" />
+    <Content Include="hover效果\Hover-master\Hover-master\.editorconfig" />
+    <Content Include="hover效果\Hover-master\Hover-master\bower.json" />
+    <Content Include="hover效果\Hover-master\Hover-master\CONTRIBUTING.md" />
+    <Content Include="hover效果\Hover-master\Hover-master\css\hover.css.map" />
+    <Content Include="hover效果\Hover-master\Hover-master\HISTORY.md" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_backward.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_bob.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_bounce-in.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_bounce-out.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_buzz-out.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_buzz.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_float.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_forward.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_grow-rotate.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_grow.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_hang.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_pop.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_pulse-grow.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_pulse-shrink.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_pulse.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_push.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_rotate.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_shrink.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_sink.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_skew-backward.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_skew-forward.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_skew.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_wobble-bottom.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_wobble-horizontal.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_wobble-skew.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_wobble-to-bottom-right.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_wobble-to-top-right.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_wobble-top.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\2d-transitions\_wobble-vertical.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\background-transitions\_back-pulse.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\background-transitions\_bounce-to-bottom.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\background-transitions\_bounce-to-left.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\background-transitions\_bounce-to-right.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\background-transitions\_bounce-to-top.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\background-transitions\_fade.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\background-transitions\_radial-in.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\background-transitions\_radial-out.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\background-transitions\_rectangle-in.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\background-transitions\_rectangle-out.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\background-transitions\_shutter-in-horizontal.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\background-transitions\_shutter-in-vertical.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\background-transitions\_shutter-out-horizontal.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\background-transitions\_shutter-out-vertical.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\background-transitions\_sweep-to-bottom.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\background-transitions\_sweep-to-left.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\background-transitions\_sweep-to-right.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\background-transitions\_sweep-to-top.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\border-transitions\_border-fade.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\border-transitions\_hollow.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\border-transitions\_outline-in.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\border-transitions\_outline-out.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\border-transitions\_overline-from-center.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\border-transitions\_overline-from-left.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\border-transitions\_overline-from-right.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\border-transitions\_overline-reveal.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\border-transitions\_reveal.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\border-transitions\_ripple-in.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\border-transitions\_ripple-out.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\border-transitions\_round-corners.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\border-transitions\_trim.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\border-transitions\_underline-from-center.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\border-transitions\_underline-from-left.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\border-transitions\_underline-from-right.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\border-transitions\_underline-reveal.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\curls\_curl-bottom-left.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\curls\_curl-bottom-right.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\curls\_curl-top-left.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\curls\_curl-top-right.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-back.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-bob.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-bounce-out.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-bounce.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-buzz-out.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-buzz.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-down.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-drop.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-fade.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-float-away.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-float.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-forward.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-grow-rotate.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-grow.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-hang.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-pop.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-pulse-grow.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-pulse-shrink.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-pulse.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-push.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-rotate.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-shrink.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-sink-away.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-sink.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-spin.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-up.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-wobble-horizontal.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\icons\_icon-wobble-vertical.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\shadow-and-glow-transitions\_box-shadow-inset.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\shadow-and-glow-transitions\_box-shadow-outset.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\shadow-and-glow-transitions\_float-shadow.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\shadow-and-glow-transitions\_glow.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\shadow-and-glow-transitions\_grow-shadow.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\shadow-and-glow-transitions\_shadow-radial.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\shadow-and-glow-transitions\_shadow.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\speech-bubbles\_bubble-bottom.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\speech-bubbles\_bubble-float-bottom.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\speech-bubbles\_bubble-float-left.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\speech-bubbles\_bubble-float-right.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\speech-bubbles\_bubble-float-top.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\speech-bubbles\_bubble-left.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\speech-bubbles\_bubble-right.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\effects\speech-bubbles\_bubble-top.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\hover.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\_hacks.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\_mixins.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\less\_options.less" />
+    <Content Include="hover效果\Hover-master\Hover-master\package.json" />
+    <Content Include="hover效果\Hover-master\Hover-master\README.md" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_backward.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_bob.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_bounce-in.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_bounce-out.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_buzz-out.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_buzz.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_float.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_forward.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_grow-rotate.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_grow.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_hang.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_pop.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_pulse-grow.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_pulse-shrink.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_pulse.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_push.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_rotate.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_shrink.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_sink.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_skew-backward.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_skew-forward.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_skew.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_wobble-bottom.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_wobble-horizontal.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_wobble-skew.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_wobble-to-bottom-right.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_wobble-to-top-right.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_wobble-top.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\2d-transitions\_wobble-vertical.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\background-transitions\_back-pulse.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\background-transitions\_bounce-to-bottom.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\background-transitions\_bounce-to-left.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\background-transitions\_bounce-to-right.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\background-transitions\_bounce-to-top.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\background-transitions\_fade.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\background-transitions\_radial-in.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\background-transitions\_radial-out.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\background-transitions\_rectangle-in.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\background-transitions\_rectangle-out.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\background-transitions\_shutter-in-horizontal.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\background-transitions\_shutter-in-vertical.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\background-transitions\_shutter-out-horizontal.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\background-transitions\_shutter-out-vertical.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\background-transitions\_sweep-to-bottom.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\background-transitions\_sweep-to-left.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\background-transitions\_sweep-to-right.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\background-transitions\_sweep-to-top.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\border-transitions\_border-fade.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\border-transitions\_hollow.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\border-transitions\_outline-in.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\border-transitions\_outline-out.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\border-transitions\_overline-from-center.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\border-transitions\_overline-from-left.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\border-transitions\_overline-from-right.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\border-transitions\_overline-reveal.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\border-transitions\_reveal.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\border-transitions\_ripple-in.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\border-transitions\_ripple-out.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\border-transitions\_round-corners.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\border-transitions\_trim.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\border-transitions\_underline-from-center.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\border-transitions\_underline-from-left.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\border-transitions\_underline-from-right.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\border-transitions\_underline-reveal.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\curls\_curl-bottom-left.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\curls\_curl-bottom-right.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\curls\_curl-top-left.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\curls\_curl-top-right.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-back.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-bob.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-bounce-out.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-bounce.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-buzz-out.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-buzz.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-down.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-drop.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-fade.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-float-away.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-float.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-forward.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-grow-rotate.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-grow.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-hang.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-pop.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-pulse-grow.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-pulse-shrink.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-pulse.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-push.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-rotate.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-shrink.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-sink-away.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-sink.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-spin.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-up.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-wobble-horizontal.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\icons\_icon-wobble-vertical.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\shadow-and-glow-transitions\_box-shadow-inset.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\shadow-and-glow-transitions\_box-shadow-outset.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\shadow-and-glow-transitions\_float-shadow.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\shadow-and-glow-transitions\_glow.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\shadow-and-glow-transitions\_grow-shadow.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\shadow-and-glow-transitions\_shadow-radial.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\shadow-and-glow-transitions\_shadow.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\speech-bubbles\_bubble-bottom.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\speech-bubbles\_bubble-float-bottom.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\speech-bubbles\_bubble-float-left.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\speech-bubbles\_bubble-float-right.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\speech-bubbles\_bubble-float-top.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\speech-bubbles\_bubble-left.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\speech-bubbles\_bubble-right.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\effects\speech-bubbles\_bubble-top.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\hover.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\_hacks.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\_mixins.scss" />
+    <Content Include="hover效果\Hover-master\Hover-master\scss\_options.scss" />
+    <Content Include="WebForm1.aspx" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="self_introduction.html" />
+    <Content Include="03display_inlineblock_practice.html" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="music-player_icon\118357-music-player-options\eps\equalizer.eps" />
+    <Content Include="music-player_icon\118357-music-player-options\eps\fast-forward.eps" />
+    <Content Include="music-player_icon\118357-music-player-options\eps\favorite.eps" />
+    <Content Include="music-player_icon\118357-music-player-options\eps\headphones.eps" />
+    <Content Include="music-player_icon\118357-music-player-options\eps\menu.eps" />
+    <Content Include="music-player_icon\118357-music-player-options\eps\musical-note.eps" />
+    <Content Include="music-player_icon\118357-music-player-options\eps\mute.eps" />
+    <Content Include="music-player_icon\118357-music-player-options\eps\next.eps" />
+    <Content Include="music-player_icon\118357-music-player-options\eps\pause.eps" />
+    <Content Include="music-player_icon\118357-music-player-options\eps\play-button.eps" />
+    <Content Include="music-player_icon\118357-music-player-options\eps\previous.eps" />
+    <Content Include="music-player_icon\118357-music-player-options\eps\repeat.eps" />
+    <Content Include="music-player_icon\118357-music-player-options\eps\rewind.eps" />
+    <Content Include="music-player_icon\118357-music-player-options\eps\shuffle.eps" />
+    <Content Include="music-player_icon\118357-music-player-options\eps\stop.eps" />
+    <Content Include="music-player_icon\118357-music-player-options\eps\volume.eps" />
+    <Content Include="music-player_icon\118357-music-player-options\font\Flaticon.eot" />
+    <Content Include="music-player_icon\118357-music-player-options\font\Flaticon.ttf" />
+    <Content Include="music-player_icon\118357-music-player-options\font\Flaticon.woff" />
+    <Content Include="music-player_icon\118357-music-player-options\font\_flaticon.scss" />
+    <Content Include="music-player_icon\118357-music-player-options\psd\equalizer.psd" />
+    <Content Include="music-player_icon\118357-music-player-options\psd\fast-forward.psd" />
+    <Content Include="music-player_icon\118357-music-player-options\psd\favorite.psd" />
+    <Content Include="music-player_icon\118357-music-player-options\psd\headphones.psd" />
+    <Content Include="music-player_icon\118357-music-player-options\psd\menu.psd" />
+    <Content Include="music-player_icon\118357-music-player-options\psd\musical-note.psd" />
+    <Content Include="music-player_icon\118357-music-player-options\psd\mute.psd" />
+    <Content Include="music-player_icon\118357-music-player-options\psd\next.psd" />
+    <Content Include="music-player_icon\118357-music-player-options\psd\pause.psd" />
+    <Content Include="music-player_icon\118357-music-player-options\psd\play-button.psd" />
+    <Content Include="music-player_icon\118357-music-player-options\psd\previous.psd" />
+    <Content Include="music-player_icon\118357-music-player-options\psd\repeat.psd" />
+    <Content Include="music-player_icon\118357-music-player-options\psd\rewind.psd" />
+    <Content Include="music-player_icon\118357-music-player-options\psd\shuffle.psd" />
+    <Content Include="music-player_icon\118357-music-player-options\psd\stop.psd" />
+    <Content Include="music-player_icon\118357-music-player-options\psd\volume.psd" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53468</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:53468/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>此專案參考這部電腦上所缺少的 NuGet 套件。請啟用 NuGet 套件還原，以下載該套件。如需詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的檔案是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
