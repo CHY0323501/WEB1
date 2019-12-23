@@ -1,0 +1,360 @@
+﻿body {
+    background-size: contain;
+    background: fixed url('hw3_musicplayer/Sciencefiction.png') center center no-repeat;
+    margin: 0;
+    padding: 0;
+}
+.player {
+    width: 600px;
+    height: 310px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 25px;
+    background-color: rgba(0, 0, 0,0.5);
+    border: 8PX solid rgba(255, 255, 255,0.8);
+    box-shadow: 0 0 40px white;
+    transform: translate(-50%,-50%);
+    animation-name: changeColor;
+    animation-duration:1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    transition-duration: 1s;
+}
+@keyframes changeColor {
+    0% {
+        box-shadow: 0 0 40px rgb(246, 245, 185);
+    }
+    100% {
+        box-shadow: 0 0 80px white;
+    }
+}
+/*開選單時，調整css*/
+.player_change {
+    transform: translate(-50%,-50%);
+    transition-duration: 1s;
+    height: 600px;
+}
+.button_change {
+    transform: translateY(-40%);
+    transition-duration: 1s;
+}
+.music_list_bg {
+    background: linear-gradient(209deg, rgba(227,48,29,0.5), rgba(236,240,84,0.5), rgba(84,191,240,0.5), rgba(143,84,240,0.5), rgba(242,106,200,0.5), rgba(238,48,105,0.5));
+    animation: music_list_bg1 alternate infinite 2.5s;
+    background-size: 300% 300%;
+    transition: 1.5s;
+    opacity: 1;
+}
+
+/*調整結束*/
+#info_area + div {
+    width: 500px;
+    height: 200px;
+    position: absolute;
+    top: 38%;
+    left: 10%;
+}
+.buttonBG {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    background-color: rgba(255, 255, 255,0.7);
+    border: 1px solid #808080;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 13px rgba(255, 255, 255,0.8);
+    top: 45%;
+    color: rgba(255, 255, 255, 0.60);
+    font-size: 3rem;
+    text-align: center;
+}
+#controlpanel_one span {
+    position: relative;
+    width: 10%;
+    margin-right: 3%;
+}
+
+#controlpanel_two > span {
+    position: relative;
+    width: 10%;
+    top: 20%;
+    margin-left: 5%;
+}
+.cont2_change {
+    margin-left: 2%;
+}
+.buttonBG:hover {
+    box-shadow: 0 0 17px rgb(255, 255, 255);
+}
+
+.music_list {
+    border-radius: 10px;
+    width: 500px;
+    height: 230px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-51%,38%);
+    transition-duration: 0.5s;
+    z-index: -1;
+    opacity: 0;
+    line-height:25px;
+}
+
+@keyframes music_list_bg1 {
+    0% {
+        background-position: 0% 17%;
+    }
+
+    50% {
+        background-position: 50% 50%;
+    }
+
+    100% {
+        background-position: 100% 100%
+    }
+}
+
+.info_area_play {
+    animation-duration: 1.5s;
+    animation-name: areaplay;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes areaplay {
+    0% {
+        box-shadow: 0px 0px 5px 5px rgba(249, 255, 102, 0.68);
+    }
+
+    25% {
+        box-shadow: 0px 0px 5px 5px rgba(254, 216, 170, 0.72)
+    }
+
+    50% {
+        box-shadow: 0px 0px 5px 5px rgba(255, 126, 126, 0.66);
+        border: double;
+    }
+
+    75% {
+        box-shadow: 0px 0px 5px 5px rgba(144, 251, 139, 0.69)
+    }
+
+    100% {
+        box-shadow: 0px 0px 5px 5px rgba(255, 255, 255,0.8);
+        border: double;
+    }
+}
+
+#info_area {
+    width: 500px;
+    height: 75px;
+    background-color: rgb(0, 0, 0);
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    border-radius: 10px;
+    border: solid 5px white;
+    transform: translate(-50%,0);
+}
+
+#musicMenu {
+    width: 610px;
+    height: 30px;
+    font-size: 10pt;
+    font-weight: 800;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0px 0px 12px 8px rgba(125, 125, 125, 0.4);
+    font-family: 微軟正黑體;
+    -webkit-appearance: none;
+    padding-left: 5pt;
+}
+
+    #musicMenu:hover {
+        box-shadow: 0px 0px 5px 5px rgba(102, 217, 255, 0.68);
+    }
+
+marquee {
+    font-family: 微軟正黑體;
+    font-size: 14pt;
+    font-weight: 800;
+    color: white;
+    text-align: center;
+    word-spacing: 4pt;
+    letter-spacing: 1pt;
+}
+
+#marquee_now_song {
+    width: 487px;
+    height: 72px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.Slider {
+    -webkit-appearance: none; /* Override default CSS styles */
+    width: 130px; /* Full-width */
+    height: 6px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    box-shadow: 0 0 2px 1px rgba(255, 255, 255,0.7);
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+    border-radius: 10px;
+}
+    /* Mouse-over effects */
+.Slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+    /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.Slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    width: 20px; /* Set a specific slider handle width */
+    height: 20px; /* Slider handle height */
+    border-radius: 50%;
+    background: rgba(255, 255, 255,0.7); /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+.Slider::-webkit-slider-thumb:hover {
+    background: rgba(102, 217, 255, 0.68);
+    transition: .2s;
+    border-radius: 5px;
+}
+
+.Slider:-moz-range-thumb {
+    width: 20px; /* Set a specific slider handle width */
+    height: 20px; /* Slider handle height */
+    border-radius: 10px;
+    background: rgba(128, 128, 128, 0.75); /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+#VolumeSlider {
+    position: absolute;
+    left: 50%;
+    transform: translate(67%,55PX);
+}
+
+.vol_adjust {
+    position: absolute;
+    top: 62%;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.72);
+    box-shadow: 0 0 13px rgba(255, 255, 255,0.8);
+    transition: .5s;
+    font-family: Calibri;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 1);
+    -webkit-appearance: none;
+}
+
+#vol_p, #vol_m {
+    cursor: pointer;
+}
+
+.duration {
+    position: absolute;
+    left: 75%;
+    top: 6%;
+    color: white;
+    font-family: Calibri;
+    letter-spacing: 1pt;
+}
+
+#program {
+    background-color: rgba(255, 255, 255, 0.3);
+    height: 8px;
+    width: 70%;
+    position: absolute;
+    top: 8%;
+    left: 0;
+    -webkit-appearance: none;
+    -moz-appearance:none;
+    border-radius:5px;
+    outline:none;
+    transition:.2s;
+}
+    #program:hover {
+        box-shadow: 0px 0px 9px 5px rgba(102, 217, 255, 0.68);
+        height:9px;
+    }
+    #program::-webkit-slider-thumb {
+        -webkit-appearance: none; /* Override default look */
+        -moz-appearance: none;
+        width: 10px;
+        height: 8px;
+        background-color: rgba(255, 255, 255, 0);
+        cursor: pointer;
+        transition: .6s;
+    }
+    #program::-webkit-slider-thumb:hover {
+        -webkit-appearance: none; /* Override default look */
+        width: 13px; /* Set a specific slider handle width */
+        height: 13px; /* Slider handle height */
+        border-radius: 50%;
+        background: rgb(255, 255, 255); /* Green background */
+    }
+#nowtime {
+    background-color: white;
+    height: 10px;
+    border-radius: 3px;
+}
+
+.slider_change {
+    box-shadow: 0px 0px 5px 5px rgba(102, 217, 255, 0.68);
+}
+
+#music_list > div {
+    width: 500px;
+    height: 111px;
+    overflow: auto;
+    float: left;
+    font-family: 微軟正黑體;
+    color: white;
+    font-size: 11pt;
+    font-weight: 800;
+    letter-spacing: 0.5pt;
+    padding-left: 2pt;
+}
+/*滾動條樣式*/
+::-webkit-scrollbar {
+    width: 13px;
+    border-radius: 8px;
+}
+
+ ::-webkit-scrollbar:hover {
+    box-shadow: 0 0 10px rgba(255, 255, 255,0.5);
+ }
+
+::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(102, 217, 255, 0.48);
+    border-radius: 8px;
+}
+.ani-menuupdate {
+    animation-name: markboxshadow;
+    animation-iteration-count: infinite;
+    animation-direction:alternate;
+    transition: 1s;
+    animation-duration: 1.2s;
+}
+
+@keyframes markboxshadow{
+    0% {
+        box-shadow: 0 0 30px rgb(246, 245, 185);
+    }
+    100% {
+        box-shadow: 0 0 30px rgba(242,106,200,0.5);
+    }
+}
