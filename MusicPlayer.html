@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="MusicCSS.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <audio id="audio">
+            <source id="nowSong" type="audio/mp3" />
+        </audio>
+        <div id="player" class="player">
+            <div id="info_area" class="">
+                <marquee id="marquee_now_song" scrollamount="2" direction="up">-請點擊播放-</marquee>
+            </div>
+            <div style="transition-duration:1s">
+                <input type="range" id="program" min="0" value="0">
+                <div id="controlpanel_one" style="height:100px;">
+                    <span class="material-icons buttonBG" id="Previous">skip_previous</span>
+                    <span class="material-icons buttonBG" id="Rewind">fast_rewind</span>
+                    <span class="material-icons buttonBG" id="Play">play_arrow</span>
+                    <span class="material-icons buttonBG" id="Stop">stop</span>
+                    <span class="material-icons buttonBG" id="Fast-Forward">fast_forward</span>
+                    <span class="material-icons buttonBG" id="Next">skip_next</span>
+                    <span class="material-icons buttonBG" id="list" title="EditMySong">list</span>
+                </div>
+                <div id="duration" class="duration">00:00 / 00:00</div>
+                <div id="controlpanel_two" style="height:100px;">
+                    <span class="material-icons buttonBG" id="Volume">volume_up</span>
+                    <span class="material-icons buttonBG" id="Repeat_all" title="Repeat_all">repeat</span>
+                    <span class="material-icons buttonBG" id="Shuffle" title="Shuffle">shuffle</span>
+                    <span class="material-icons buttonBG" id="repeat_one" title="repeat_one">repeat_one</span>
+                    <span class="material-icons buttonBG" id="music_update" title="music_update" style="display:none">playlist_add_check</span>
+                    <input type="range" min="0" max="100" value="70" class="Slider" id="VolumeSlider">
+                    <input class="vol_adjust" id="vol_p" style="width:32px;left:70%;font-weight:800" type="button" value="＋" />
+                    <input class="vol_adjust" id="vol_m" style="width:32px;left:78%;font-weight:800" type="button" value="－" />
+                    <input class="vol_adjust" id="vol_info" style="width:32px;left:86%;text-align:center;font-weight:700;color:rgba(255, 255, 255, 0.60);-webkit-appearance:none;height:18.5px;" type="text" value="70" max="100" min="0" readonly="readonly" />
+                </div>
+                <div style="position:absolute;top:50%;left:50%;transform:translate(-51.5%,100px);transition-duration:1s">
+                    <select id="musicMenu"></select>
+                </div>
+                <div id="music_list" class="music_list">
+                    <div id="song_source" style="border-bottom:2px white dashed">
+                        <div title="MUSIC/Barbasauce.mp3">Barbasauce</div>
+                        <div title="MUSIC/FastLife.mp3">FastLife</div>
+                        <div title="MUSIC/GoodNight.mp3">GoodNight</div>
+                        <div title="MUSIC/LightsGoLow.mp3">LightsGoLow</div>
+                    </div>
+                    <div id="song_target"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="playerJS.js"></script>
+</body>
+</html>
